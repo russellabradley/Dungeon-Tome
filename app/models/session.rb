@@ -1,4 +1,4 @@
-class Park < ActiveRecord::Base
+class Park < ApplicationRecord
   validates :notes, presence: true
 
   belongs_to :campaign

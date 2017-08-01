@@ -1,4 +1,4 @@
-class Character < ActiveRecord::Base
+class Character < ApplicationRecord
   validates :name, presence: true
   validates :race, presence: true, inclusion: {in: ["dragonborn", "dwarf", "elf", "gnome", "half-elf", "half-orc", "halfling", "human", "tiefling"]}
   validates :level, numericality: { only_integer: true, allow_nil: false }, inclusion: {in: 1..20}
