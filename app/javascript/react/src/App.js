@@ -4,7 +4,6 @@ import Header from './components/Header'
 
 const App = props => (
   <div>
-    <p>hello from App</p>
     <Header />
     <Main />
   </div>
