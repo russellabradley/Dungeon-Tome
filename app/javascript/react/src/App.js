@@ -1,9 +1,12 @@
 import React from 'react';
+import Main from './components/Main'
 
 const App = props => {
   return(
-    <h1>Hello World</h1>
+    <div>
+      <Main />
+    </div>
   )
 }
 
-export default App
+export default App;
