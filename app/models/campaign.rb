@@ -1,4 +1,4 @@
-class Park < ActiveRecord::Base
+class Campaign < ApplicationRecord
   validates :title, presence: true
 
   has_many :quests
