@@ -1,18 +1,22 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom'
+import {
+ BrowserRouter as Router,
+ Route,
+ Switch,
+ Link
+} from 'react-router-dom';
+
 import Home from './Home';
-import CharacterIndex from './CharacterIndex';
+import CampaignContainer from '../containers/CampaignContainer';
 
 
 const Main = props => (
   <div>
-    <main>
-      <p>hello from main</p>
-      <Switch>
-        <Route exact path='/' component={Home}/>
-        <Route path='/characters' component={CharacterIndex}/>
-      </Switch>
-    </main>
+    <p>hello from main</p>
+    <Switch>
+      <Route exact path='/' component={Home}/>
+      <Route path='/campaign' component={CampaignContainer}/>
+    </Switch>
   </div>
 )
 
