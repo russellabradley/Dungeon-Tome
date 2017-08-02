@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
 import Home from './Home';
-import CharacterIndex from './CharacterIndex';
+import Campaign from './Campaign';
 
 
 const Main = props => (
@@ -10,7 +10,7 @@ const Main = props => (
       <p>hello from main</p>
       <Switch>
         <Route exact path='/' component={Home}/>
-        <Route path='/characters' component={CharacterIndex}/>
+        <Route path='/campaign' component={Campaign}/>
       </Switch>
     </main>
   </div>
