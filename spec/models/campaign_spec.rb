@@ -10,7 +10,9 @@ RSpec.describe Campaign, type: :model do
     it { should have_valid(:description).when("Go fight some orcs") }
     it { should have_valid(:description).when(4) }
 
-    it { should have_valid(:loot).when("400 gold, 34 platinum, +3 broadsword") }
-    it { should have_valid(:loot).when(nil) }
+    it { should have_valid(:tagline).when(nil) }
+    it { should have_valid(:tagline).when("Save the land from an evil bad guy!") }
+    it { should have_valid(:tagline).when(4) }
+
   end
 end
