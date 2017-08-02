@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Campaign extends component {
+class CampaignContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,11 +12,11 @@ class Campaign extends component {
 
     return(
       <div>
-        <p>Hello from campaign</p>
+        <p>Hello from campaign container</p>
       </div>
     )
   }
 }
 
 
-export default Campaign;
+export default CampaignContainer;
