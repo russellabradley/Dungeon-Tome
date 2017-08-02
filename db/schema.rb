@@ -10,39 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802145416) do
+ActiveRecord::Schema.define(version: 20170802153821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "campaigns", force: :cascade do |t|
     t.string "title", null: false
+    t.string "tagline"
     t.string "description"
-    t.text "loot"
   end
 
-  create_table "character_campaigns", force: :cascade do |t|
-    t.bigint "character_id"
+  create_table "loots", force: :cascade do |t|
+    t.integer "gold"
+    t.text "inventory"
     t.bigint "campaign_id"
-    t.index ["campaign_id"], name: "index_character_campaigns_on_campaign_id"
-    t.index ["character_id"], name: "index_character_campaigns_on_character_id"
-  end
-
-  create_table "characters", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "race", null: false
-    t.string "char_class", null: false
-    t.integer "level", null: false
-    t.integer "proficiency_bonus"
-    t.text "description"
-    t.text "attacks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_loots_on_campaign_id"
   end
 
   create_table "quests", force: :cascade do |t|
     t.string "title", null: false
     t.string "description"
+    t.boolean "completed", default: false
     t.bigint "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,6 +41,8 @@ ActiveRecord::Schema.define(version: 20170802145416) do
   end
 
   create_table "sessions", force: :cascade do |t|
+    t.string "title"
+    t.string "date"
     t.text "notes", null: false
     t.bigint "campaign_id"
     t.datetime "created_at", null: false
