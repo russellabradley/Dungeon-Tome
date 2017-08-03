@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'static_pages#index'
   get '/campaigns', to: 'static_pages#index'
-  get '/campaign/:id', to: 'static_pages#index'
+  get '/campaigns/:id', to: 'static_pages#index'
 
 
   namespace :api do

@@ -12,7 +12,7 @@ import CampaignShow from '../containers/CampaignShow';
 
 
 const Main = props => (
-  <div>
+  <div className="newbgcolor">
     <Switch>
       <Route exact path='/' component={Login}/>
       <Route exact path='/campaigns' component={CampaignsIndex}/>

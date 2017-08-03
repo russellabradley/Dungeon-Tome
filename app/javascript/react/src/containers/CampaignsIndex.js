@@ -52,9 +52,11 @@ export default class CampaignsIndex extends Component {
     })
 
     return(
-      <div>
+      <div className="container">
         <div className='row'>
-          <div className="col s12 m6">
+          <div className="col s0 m1">
+          </div>
+          <div className="col s12 m10">
             {campaigns}
           </div>
         </div>
