@@ -6,16 +6,15 @@ import {
  Link
 } from 'react-router-dom';
 
-import Home from './Home';
+import Login from './Login';
 import CampaignContainer from '../containers/CampaignContainer';
 
 
 const Main = props => (
   <div>
-    <p>hello from main</p>
     <Switch>
-      <Route exact path='/' component={Home}/>
-      <Route path='/campaign' component={CampaignContainer}/>
+      <Route exact path='/' component={Login}/>
+      <Route path='/campaigns' component={CampaignContainer}/>
     </Switch>
   </div>
 )
