@@ -5,5 +5,9 @@ class Api::V1::CampaignsController < ApplicationController
     render json: Campaign.all
   end
 
+  def show
+
+  end
+
 
 end

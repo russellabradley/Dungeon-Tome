@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 
-class CampaignContainer extends Component {
+export default class CampaignShow extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      campaignsList: []
+      campaign_id: 1,
+      title: null,
+      description: null,
+      tagline: null,
+      quests: [],
+      sessions: [],
+      loots: []
     }
   }
 
@@ -31,27 +37,13 @@ class CampaignContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`))
     }
 
-  render(){
 
-    let campaigns
-    campaigns = this.state.campaignsList.map (c => {
-      return(
-        <div>
-          <h2>{c.title}</h2>
-          <h4>{c.tagline}</h4>
-          <p>{c.description}</p>
-        </div>
-      )
-    })
+  render(){
 
     return(
       <div>
-        <p>Hello from campaign container</p>
-        {campaigns}
+        <p>Hello from campaign show page</p>
       </div>
     )
   }
 }
-
-
-export default CampaignContainer;
