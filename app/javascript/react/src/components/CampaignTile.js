@@ -5,7 +5,7 @@ import campaignTileImage from '../../../../assets/images/dnd_campaign_tile_01.pn
 
 
 const CampaignTile = props => {
-  let campaign = "/campaigns/" + props.campaignId;
+  let campaignLink = "/campaigns/" + props.campaignId;
 
   return(
     <div className="card small grey lighten-3">
@@ -17,7 +17,7 @@ const CampaignTile = props => {
         <p>{props.tagline}</p>
       </div>
       <div className="card-action">
-        <Link to={campaign}>Enter Campaign</Link>
+        <Link to={campaignLink}>Enter Campaign</Link>
       </div>
     </div>
   )

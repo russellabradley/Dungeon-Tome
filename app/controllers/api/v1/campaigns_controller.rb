@@ -6,7 +6,8 @@ class Api::V1::CampaignsController < ApplicationController
   end
 
   def show
-
+    campaign = Campaign.find(params[:id])
+    render json: campaign
   end
 
 
