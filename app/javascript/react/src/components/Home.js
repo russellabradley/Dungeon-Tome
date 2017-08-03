@@ -9,12 +9,12 @@ import {
 export default class Home extends React.Component {
     constructor () {
       super()
-      this.handleSubmit = this.handleSubmit.bind(this)
-      this.handleInput = this.handleInput.bind(this)
       this.state = {
         email: '',
         password: ''
       }
+      this.handleSubmit = this.handleSubmit.bind(this)
+      this.handleInput = this.handleInput.bind(this)
     }
 
     handleSubmit (e) {
@@ -29,7 +29,7 @@ export default class Home extends React.Component {
         window.localStorage.token = data.jwt
       })
       // redirect to campaigns page
-      browserHistory.push('/campaigns')
+      // browserHistory.push('/campaigns')
     }
 
     handleInput (e) {
