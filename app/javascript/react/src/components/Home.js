@@ -1,4 +1,10 @@
 import React from 'react'
+import {
+ BrowserRouter as Router,
+ Route,
+ Switch,
+ Link
+} from 'react-router-dom';
 
 export default class Home extends React.Component {
     constructor () {
@@ -22,6 +28,8 @@ export default class Home extends React.Component {
       .then(data => {
         window.localStorage.token = data.jwt
       })
+      // redirect to campaigns page
+      browserHistory.push('/campaigns')
     }
 
     handleInput (e) {
@@ -34,9 +42,9 @@ export default class Home extends React.Component {
       return (
         <div>
           <form onSubmit={this.handleSubmit}>
-            <input id='email' onChange={this.handleInput} />
+              <input id='email' onChange={this.handleInput} />
             <input id='password' onChange={this.handleInput} />
-            <button type='submit'>Submit</button>
+            <button className="btn waves-effect waves-light" type='submit'>Submit</button>
           </form>
         </div>
       )
