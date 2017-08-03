@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # Knock gem stuff
   post 'user_token' => 'user_token#create'
 
   root 'static_pages#index'
@@ -10,6 +11,5 @@ Rails.application.routes.draw do
       resources :campaigns
     end
   end
-
-
+  
 end
