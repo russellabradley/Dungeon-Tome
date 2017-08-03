@@ -9,21 +9,26 @@ class CampaignContainer extends Component {
   }
 
   componentDidMount() {
-      fetch(`/api/v1/campaigns/`)
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-                error = new Error(errorMessage);
-            throw(error);
-          }
-        })
-        .then((response) => response.json())
-        .then((responseData) => {
-          this.setState({campaignsList: responseData})
-        })
-        .catch(error => console.error(`Error in fetch: ${error.message}`))
+      fetch(`/api/v1/campaigns/`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.setState({campaignsList: responseData})
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`))
     }
 
   render(){
