@@ -13,8 +13,7 @@ export default class Login extends React.Component {
     super()
     this.state = {
       email: '',
-      password: '',
-      fireRedirect: false
+      password: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -29,7 +28,6 @@ export default class Login extends React.Component {
     })
     .then(response => {
       if (response.ok) {
-        this.setState({ fireRedirect: true })
         return response;
       } else {
         let errorMessage = `${response.status} (${response.statusText})`,
@@ -39,7 +37,12 @@ export default class Login extends React.Component {
     })
     .then(response => response.json())
     .then(data => {
-      window.localStorage.token = data.jwt
+      if (data.jwt) {
+        window.localStorage.token = data.jwt
+        this.props.history.push('/campaigns')
+      } else {
+        // set state error true and show a div that says bad login
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
@@ -51,16 +54,15 @@ export default class Login extends React.Component {
   }
 
   render () {
-    const { from } = this.props.location.state || '/'
-    const { fireRedirect } = this.state
 
     return (
-      <div className="container center-align">
+      <div className="container">
         <div className="row">
           <div className="col s10 m8">
-            <div className="card">
+            <div className="row">
               <form onSubmit={this.handleSubmit}>
                 <input id='email' onChange={this.handleInput} />
+                <label for="email">Email</label>
                 <input id='password' onChange={this.handleInput} />
                 <button className="btn waves-effect waves-light" type='submit'>Submit</button>
               </form>
