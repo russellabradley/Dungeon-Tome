@@ -8,7 +8,7 @@ const CampaignTile = props => {
   let campaignLink = "/campaigns/" + props.campaignId;
 
   return(
-    <div className="card small grey lighten-3">
+    <div className="card small hoverable">
       <div className="card-image">
         <img src={campaignTileImage}/>
         <span className="card-title">{props.title}</span>

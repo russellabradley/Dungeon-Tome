@@ -4,7 +4,8 @@ export default class CampaignShow extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      campaign_obj: null
+      campaignObj: null,
+      showDescription: false
     }
   }
 
@@ -27,27 +28,32 @@ export default class CampaignShow extends Component {
     })
     .then((response) => response.json())
     .then((responseData) => {
-      this.setState({campaign_obj: responseData})
+      this.setState({campaignObj: responseData})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
 
 
   render(){
+
     let titleText
     let taglineText
     let descriptionText
-    if (this.state.campaign_obj) {
-      titleText = this.state.campaign_obj.title
-      taglineText = this.state.campaign_obj.tagline
-      descriptionText = this.state.campaign_obj.description
+    if (this.state.campaignObj) {
+      titleText = this.state.campaignObj.title
+      taglineText = this.state.campaignObj.tagline
+      descriptionText = this.state.campaignObj.description
     }
 
     return(
-      <div>
-        <h2>{titleText}</h2>
-        <h5>{taglineText}</h5>
-        <p>{descriptionText}</p>
+      <div className="container">
+        <div className="row">
+          <div className="col m6">
+            <h2>{titleText}</h2>
+            <blockquote>{taglineText}</blockquote>
+            <p>{descriptionText}</p>
+          </div>
+        </div>
       </div>
     )
   }
