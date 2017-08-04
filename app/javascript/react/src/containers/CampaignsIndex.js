@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 
-class CampaignContainer extends Component {
+import CampaignTile from '../components/CampaignTile';
+
+
+export default class CampaignsIndex extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -37,21 +40,27 @@ class CampaignContainer extends Component {
     campaigns = this.state.campaignsList.map (c => {
       return(
         <div>
-          <h2>{c.title}</h2>
-          <h4>{c.tagline}</h4>
-          <p>{c.description}</p>
+          <CampaignTile
+            key={c.id}
+            campaignId={c.id}
+            title={c.title}
+            tagline={c.tagline}
+            description={c.description}
+          />
         </div>
       )
     })
 
     return(
-      <div>
-        <p>Hello from campaign container</p>
-        {campaigns}
+      <div className="container">
+        <div className='row'>
+          <div className="col s0 m1">
+          </div>
+          <div className="col s12 m10">
+            {campaigns}
+          </div>
+        </div>
       </div>
     )
   }
 }
-
-
-export default CampaignContainer;

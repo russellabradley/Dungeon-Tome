@@ -7,14 +7,16 @@ import {
 } from 'react-router-dom';
 
 import Login from './Login';
-import CampaignContainer from '../containers/CampaignContainer';
+import CampaignsIndex from '../containers/CampaignsIndex';
+import CampaignShow from '../containers/CampaignShow';
 
 
 const Main = props => (
   <div>
     <Switch>
       <Route exact path='/' component={Login}/>
-      <Route path='/campaigns' component={CampaignContainer}/>
+      <Route exact path='/campaigns' component={CampaignsIndex}/>
+      <Route exact path='/campaigns/:id' component={CampaignShow}/>
     </Switch>
   </div>
 )
