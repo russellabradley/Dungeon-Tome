@@ -1,3 +1,5 @@
+require 'pry'
+
 class Api::V1::CampaignsController < ApplicationController
   before_action :authenticate_user
 
@@ -7,7 +9,14 @@ class Api::V1::CampaignsController < ApplicationController
 
   def show
     campaign = Campaign.find(params[:id])
-    render json: campaign
+    campaign_data = {
+      campaign: campaign,
+      sessions: campaign.sessions,
+      loot: campaign.loots,
+      quests: campaign.quests,
+      characters: campaign.characters
+    }
+    render json: campaign_data
   end
 
 

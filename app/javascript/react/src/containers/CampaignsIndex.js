@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
+import CampaignTile from '../components/CampaignTile'
 
-import CampaignTile from '../components/CampaignTile';
 
-
-export default class CampaignsIndex extends Component {
+class CampaignsIndex extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -64,3 +63,5 @@ export default class CampaignsIndex extends Component {
     )
   }
 }
+
+export default CampaignsIndex;

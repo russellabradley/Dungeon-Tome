@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-// import SessionContainer from './SessionContainer';
+import SessionContainer from './SessionContainer';
+import SessionTile from '../components/SessionTile';
 
 
-
-export default class CampaignShow extends Component {
+class CampaignShow extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       campaignObj: null,
+      lootArray: [],
+      questsArray: [],
+      sessionsArray: [],
+      charactersArray: [],
       showDescription: false
     }
   }
@@ -32,7 +36,12 @@ export default class CampaignShow extends Component {
     })
     .then((response) => response.json())
     .then((responseData) => {
-      this.setState({campaignObj: responseData})
+      this.setState({
+        campaignObj: responseData.campaign,
+        lootArray: responseData.loot,
+        questsArray: responseData.quests,
+        sessionsArray: responseData.sessions,
+        charactersArray: responseData.characters})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
@@ -49,18 +58,43 @@ export default class CampaignShow extends Component {
       descriptionText = this.state.campaignObj.description
     }
 
+    // let sessions
+    // if (this.state.campaignObj) {
+    //   let sessions =
+    //     <SessionContainer
+    //       sessions={this.state.sessionsArray}
+    //     />
+    // }
+
+    let sessions
+    sessions = this.state.sessionsArray.map(s => {
+      return(
+        <SessionTile
+          key={s.id}
+          id={s.id}
+          sessionNum={s.id}
+          sessionTitle={s.title}
+          sessionDate={s.date}
+          sessionNotes={s.notes}
+        />
+      )
+    })
+
     return(
       <div>
         <div className="container">
           <div className="row">
             <div className="col s12 m6">
               <h2>{titleText}</h2>
-              <blockquote>{taglineText}</blockquote>
-              <p>{descriptionText}</p>
+              <p>{taglineText}</p>
+              <blockquote>{descriptionText}</blockquote>
             </div>
           </div>
         </div>
+        {sessions}
       </div>
     )
   }
 }
+
+export default CampaignShow;
