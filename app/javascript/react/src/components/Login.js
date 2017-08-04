@@ -24,7 +24,7 @@ export default class Login extends React.Component {
 
   handleLogin (event) {
     event.preventDefault()
-    fetch('http://localhost:3000/user_token', {
+    fetch('/user_token', {
       headers: {'Content-Type': 'application/json'},
       method: 'POST',
       body: JSON.stringify({"auth": {"email": this.state.email, "password": this.state.password}})
