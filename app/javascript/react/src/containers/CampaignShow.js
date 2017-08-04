@@ -1,4 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+// import SessionContainer from './SessionContainer';
+
+
 
 export default class CampaignShow extends Component {
   constructor(props) {
@@ -46,12 +50,14 @@ export default class CampaignShow extends Component {
     }
 
     return(
-      <div className="container">
-        <div className="row">
-          <div className="col s12 m6">
-            <h2>{titleText}</h2>
-            <blockquote>{taglineText}</blockquote>
-            <p>{descriptionText}</p>
+      <div>
+        <div className="container">
+          <div className="row">
+            <div className="col s12 m6">
+              <h2>{titleText}</h2>
+              <blockquote>{taglineText}</blockquote>
+              <p>{descriptionText}</p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,0 +1,23 @@
+import React from 'react';
+import { Link } from 'react-router-dom'
+
+
+const SessionTile = props => {
+
+  return(
+    <div>
+      <div className="card">
+        <div className="card-content black-text">
+          <p className="grey-text text-lighten-1">{props.sessionDate}</p>
+          <span className="card-title">{props.sessionNum}. {props.sessionTitle}</span>
+          <blockquote>"{props.sessionNotes}"</blockquote>
+        </div>
+        <div className="card-action">
+          <a href="#">Edit</a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default SessionTile;
