@@ -48,7 +48,7 @@ export default class CampaignShow extends Component {
     return(
       <div className="container">
         <div className="row">
-          <div className="col m6">
+          <div className="col s12 m6">
             <h2>{titleText}</h2>
             <blockquote>{taglineText}</blockquote>
             <p>{descriptionText}</p>
