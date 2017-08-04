@@ -55,13 +55,19 @@ export default class Login extends React.Component {
     const { fireRedirect } = this.state
 
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input id='email' onChange={this.handleInput} />
-          <input id='password' onChange={this.handleInput} />
-          <button className="btn waves-effect waves-light" type='submit'>Submit</button>
-        </form>
-        {fireRedirect && (<Redirect to={'/campaigns'}/>)}
+      <div className="container center-align">
+        <div className="row">
+          <div className="col s10 m8">
+            <div className="card">
+              <form onSubmit={this.handleSubmit}>
+                <input id='email' onChange={this.handleInput} />
+                <input id='password' onChange={this.handleInput} />
+                <button className="btn waves-effect waves-light" type='submit'>Submit</button>
+              </form>
+              {fireRedirect && (<Redirect to={'/campaigns'}/>)}
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
