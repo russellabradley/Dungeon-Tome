@@ -66,7 +66,6 @@ export default class Login extends React.Component {
                 <input id='password' onChange={this.handleInput} />
                 <button className="btn waves-effect waves-light" type='submit'>Submit</button>
               </form>
-              {fireRedirect && (<Redirect to={'/campaigns'}/>)}
             </div>
           </div>
         </div>
