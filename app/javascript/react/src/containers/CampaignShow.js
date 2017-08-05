@@ -37,6 +37,7 @@ class CampaignShow extends React.Component {
     })
     .then((response) => response.json())
     .then((responseData) => {
+      debugger;
       this.setState({
         campaignObj: responseData.campaign,
         lootObj: responseData.loot,

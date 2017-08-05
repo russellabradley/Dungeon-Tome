@@ -34,7 +34,6 @@ class CampaignsIndex extends React.Component {
     }
 
   render(){
-
     let campaigns
     campaigns = this.state.campaignsList.map (c => {
       return(
