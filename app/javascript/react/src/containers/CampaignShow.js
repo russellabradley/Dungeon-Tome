@@ -2,6 +2,7 @@ import React from 'react';
 
 import SessionContainer from './SessionContainer';
 import SessionTile from '../components/SessionTile';
+import Loot from '../components/Loot';
 
 
 class CampaignShow extends React.Component {
@@ -9,7 +10,7 @@ class CampaignShow extends React.Component {
     super(props)
     this.state = {
       campaignObj: null,
-      lootArray: [],
+      lootObj: null,
       questsArray: [],
       sessionsArray: [],
       charactersArray: [],
@@ -38,7 +39,7 @@ class CampaignShow extends React.Component {
     .then((responseData) => {
       this.setState({
         campaignObj: responseData.campaign,
-        lootArray: responseData.loot,
+        lootObj: responseData.loot,
         questsArray: responseData.quests,
         sessionsArray: responseData.sessions,
         charactersArray: responseData.characters})
@@ -58,14 +59,6 @@ class CampaignShow extends React.Component {
       descriptionText = this.state.campaignObj.description
     }
 
-    // let sessions
-    // if (this.state.campaignObj) {
-    //   let sessions =
-    //     <SessionContainer
-    //       sessions={this.state.sessionsArray}
-    //     />
-    // }
-
     let sessions
     sessions = this.state.sessionsArray.map((s, i) => {
       return(
@@ -79,18 +72,34 @@ class CampaignShow extends React.Component {
       )
     })
 
+    let loot
+    if (this.state.lootObj) {
+      loot = <Loot
+              inventory={this.state.lootObj.inventory}
+              gold={this.state.lootObj.gold}
+            />
+    }
+
+
     return(
       <div>
-        <div className="container">
-          <div className="row">
-            <div className="col s12 m6">
-              <h4>{titleText}</h4>
-              <p>{taglineText}</p>
-              <blockquote>{descriptionText}</blockquote>
+        <div className="deep-purple">
+          <div className="container">
+            <div className="row">
+              <div className="col s12 m6 white-text">
+                <h4>{titleText}</h4>
+                <p>{taglineText}</p>
+                <blockquote>{descriptionText}</blockquote>
+              </div>
             </div>
           </div>
         </div>
-        {sessions}
+        <div className="container">
+          <div className="row">
+            {sessions}
+            {loot}
+          </div>
+        </div>
       </div>
     )
   }
