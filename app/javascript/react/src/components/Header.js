@@ -3,7 +3,7 @@ import React from 'react';
 const Header = props => (
   <div>
     <nav>
-      <div className="nav-wrapper">
+      <div className="nav-wrapper grey darken-4">
         <a href="#" className="brand-logo">Dungeon Tome</a>
       </div>
     </nav>

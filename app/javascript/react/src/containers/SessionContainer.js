@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import SessionTile from '../components/SessionTile';
+import SessionTile from '../components/SessionTile';
 
 
-export default class SessionContainer extends Component {
+class SessionContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -15,15 +15,18 @@ export default class SessionContainer extends Component {
 
   render(){
     let sessions
-    sessions = <div>
-                <SessionTile
-                  id={1}
-                  sessionNum={1}
-                  sessionTitle={"Session Test Name"}
-                  sessionDate={"Session Test Date"}
-                  sessionNotes={"These are the notes for the test session. These are the notes for the test session. These are the notes for the test session. These are the notes for the test session. These are the notes for the test session. These are the notes for the test session. These are the notes for the test session. These are the notes for the test session. These are the notes for the test session. These are the notes for the test session. These are the notes for the test session. These are the notes for the test session. "}
-                />
-              </div>
+    sessions = this.props.sessions.map(s => {
+      return(
+        <SessionTile
+          key={s.id}
+          id={s.id}
+          sessionNum={s.id}
+          sessionTitle={s.title}
+          sessionDate={s.date}
+          sessionNotes={s.notes}
+        />
+      )
+    })
 
 
     return(
@@ -33,3 +36,5 @@ export default class SessionContainer extends Component {
     )
   }
 }
+
+export default SessionContainer;

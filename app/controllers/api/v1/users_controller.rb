@@ -12,8 +12,4 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  # def sanitize(input)
-  #   ActionController::Base.helpers.sanitize(input)
-  # end
-
 end

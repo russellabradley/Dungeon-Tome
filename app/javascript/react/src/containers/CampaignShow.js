@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-// import SessionContainer from './SessionContainer';
+import SessionContainer from './SessionContainer';
+import SessionTile from '../components/SessionTile';
+import Loot from '../components/Loot';
 
 
-
-export default class CampaignShow extends Component {
+class CampaignShow extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       campaignObj: null,
+      lootObj: null,
+      questsArray: [],
+      sessionsArray: [],
+      charactersArray: [],
       showDescription: false
     }
   }
@@ -32,13 +37,18 @@ export default class CampaignShow extends Component {
     })
     .then((response) => response.json())
     .then((responseData) => {
-      this.setState({campaignObj: responseData})
+      this.setState({
+        campaignObj: responseData.campaign,
+        lootObj: responseData.campaign.loots[0],
+        questsArray: responseData.campaign.quests,
+        sessionsArray: responseData.campaign.sessions,
+        charactersArray: responseData.campaign.characters})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
 
 
-  render(){
+  render() {
 
     let titleText
     let taglineText
@@ -49,18 +59,50 @@ export default class CampaignShow extends Component {
       descriptionText = this.state.campaignObj.description
     }
 
+    let sessions
+    sessions = this.state.sessionsArray.map((s, i) => {
+      return(
+        <SessionTile
+          key={s.id}
+          sessionNum={i+1}
+          sessionTitle={s.title}
+          sessionDate={s.date}
+          sessionNotes={s.notes}
+        />
+      )
+    })
+
+    let loot
+    if (this.state.lootObj) {
+      loot = <Loot
+              inventory={this.state.lootObj.inventory}
+              gold={this.state.lootObj.gold}
+            />
+    }
+
+
     return(
       <div>
+        <div className="deep-purple">
+          <div className="container">
+            <div className="row">
+              <div className="col s12 m6 white-text">
+                <h4>{titleText}</h4>
+                <p>{taglineText}</p>
+                <blockquote>{descriptionText}</blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="row">
-            <div className="col s12 m6">
-              <h2>{titleText}</h2>
-              <blockquote>{taglineText}</blockquote>
-              <p>{descriptionText}</p>
-            </div>
+            {sessions}
+            {loot}
           </div>
         </div>
       </div>
     )
   }
 }
+
+export default CampaignShow;
