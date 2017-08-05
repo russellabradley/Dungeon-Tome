@@ -9,5 +9,13 @@ export default class Loot extends React.Component {
     }
   }
 
+  render() {
 
+
+    return(
+
+
+
+    )
+  }
 }

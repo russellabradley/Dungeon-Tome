@@ -47,7 +47,7 @@ class CampaignShow extends React.Component {
   }
 
 
-  render(){
+  render() {
 
     let titleText
     let taglineText
@@ -67,12 +67,11 @@ class CampaignShow extends React.Component {
     // }
 
     let sessions
-    sessions = this.state.sessionsArray.map(s => {
+    sessions = this.state.sessionsArray.map((s, i) => {
       return(
         <SessionTile
           key={s.id}
-          id={s.id}
-          sessionNum={s.id}
+          sessionNum={i+1}
           sessionTitle={s.title}
           sessionDate={s.date}
           sessionNotes={s.notes}
@@ -85,7 +84,7 @@ class CampaignShow extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col s12 m6">
-              <h2>{titleText}</h2>
+              <h4>{titleText}</h4>
               <p>{taglineText}</p>
               <blockquote>{descriptionText}</blockquote>
             </div>

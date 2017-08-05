@@ -11,13 +11,12 @@ class Api::V1::CampaignsController < ApplicationController
     campaign = Campaign.find(params[:id])
     campaign_data = {
       campaign: campaign,
-      sessions: campaign.sessions,
+      sessions: campaign.sessions.sort_by { |s| s.created_at },
       loot: campaign.loots,
       quests: campaign.quests,
       characters: campaign.characters
     }
     render json: campaign_data
   end
-
 
 end
