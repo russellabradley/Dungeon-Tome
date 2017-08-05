@@ -6,7 +6,7 @@ class CampaignsIndex extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      campaignsList: []
+      campaignsList: null
     }
   }
 
@@ -28,26 +28,28 @@ class CampaignsIndex extends React.Component {
       })
       .then((response) => response.json())
       .then((responseData) => {
-        this.setState({campaignsList: responseData})
+        this.setState({campaignsList: responseData.campaigns})
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`))
     }
 
   render(){
     let campaigns
-    campaigns = this.state.campaignsList.map (c => {
-      return(
-        <div>
+    if (this.state.campaignsList) {
+      campaigns = this.state.campaignsList.map (c => {
+        return(
+          <div>
           <CampaignTile
-            key={c.id}
-            campaignId={c.id}
-            title={c.title}
-            tagline={c.tagline}
-            description={c.description}
+          key={c.id}
+          campaignId={c.id}
+          title={c.title}
+          tagline={c.tagline}
+          description={c.description}
           />
-        </div>
-      )
-    })
+          </div>
+        )
+      })
+    }
 
     return(
       <div className="container">
