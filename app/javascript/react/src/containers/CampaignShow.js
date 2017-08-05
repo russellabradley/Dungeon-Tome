@@ -37,13 +37,12 @@ class CampaignShow extends React.Component {
     })
     .then((response) => response.json())
     .then((responseData) => {
-      debugger;
       this.setState({
         campaignObj: responseData.campaign,
-        lootObj: responseData.loot,
-        questsArray: responseData.quests,
-        sessionsArray: responseData.sessions,
-        charactersArray: responseData.characters})
+        lootObj: responseData.campaign.loots[0],
+        questsArray: responseData.campaign.quests,
+        sessionsArray: responseData.campaign.sessions,
+        charactersArray: responseData.campaign.characters})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
