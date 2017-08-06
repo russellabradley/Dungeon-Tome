@@ -20,5 +20,45 @@
  }
 
  .campaignHeader {
-     background-image: url("../images/dnd_campaign_tile_01.png");
+   position: relative;
+   background-color: rgba(28, 19, 42, 0.7);
+
  }
+
+ .campaignHeader-background-image {
+   position: absolute;
+   background-image: url("http://pre09.deviantart.net/3197/th/pre/i/2015/019/e/c/fantasy_landscape_by_raymondminnaar-d8eii74.jpg");
+   background-size: cover;
+   background-position: center;
+   height: 100%;
+   width: 100%;
+   top: 0;
+   z-index: -1;
+ }
+
+ .campaignHeader-bottom-bar {
+   color: white;
+   padding: 15px;
+   background-color: rgba(28, 19, 42, 0.5);
+ }
+
+ .newSessionForm {
+   transition: max-height 1s ease-in;
+ }
+
+ .newSessionForm.-inactive {
+   max-height: 0px;
+   overflow: hidden;
+ }
+
+ .newSessionForm.-active {
+   max-height: 500px;
+ }
+
+ // .campaignHeader-description-container {
+ //   height: 0px;
+ //   &:hover {
+ //     height: auto;
+ //     max-height: 300px;
+ //   }
+ // }

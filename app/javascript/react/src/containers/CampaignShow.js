@@ -79,16 +79,22 @@ class CampaignShow extends React.Component {
 
     return(
       <div>
-        <div className="deep-purple">
+        <div className="campaignHeader">
           <div className="container">
             <div className="row">
               <div className="col s12 m6 white-text">
                 <h4>{titleText}</h4>
                 <p>{taglineText}</p>
-                <blockquote>{descriptionText}</blockquote>
+                <div className="campaignHeader-description-container">
+                  <blockquote>{descriptionText}</blockquote>
+                </div>
               </div>
             </div>
           </div>
+          <div className="campaignHeader-bottom-bar">
+            Anything you want
+          </div>
+          <div className="campaignHeader-background-image"></div>
         </div>
         <div className="container">
           <div className="row">
