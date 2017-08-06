@@ -11,9 +11,9 @@ class CampaignShow extends React.Component {
     this.state = {
       campaignObj: null,
       lootObj: null,
-      questsArray: [],
-      sessionsArray: [],
-      charactersArray: [],
+      questsArray: null,
+      sessionsArray: null,
+      charactersArray: null,
       showDescription: false
     }
   }
@@ -59,18 +59,14 @@ class CampaignShow extends React.Component {
       descriptionText = this.state.campaignObj.description
     }
 
+
     let sessions
-    sessions = this.state.sessionsArray.map((s, i) => {
-      return(
-        <SessionTile
-          key={s.id}
-          sessionNum={i+1}
-          sessionTitle={s.title}
-          sessionDate={s.date}
-          sessionNotes={s.notes}
-        />
-      )
-    })
+    if (this.state.sessionsArray) {
+      sessions = <SessionContainer
+                      campaignId={this.state.campaignObj.id}
+                      sessionList={this.state.sessionsArray}
+                    />
+    }
 
     let loot
     if (this.state.lootObj) {

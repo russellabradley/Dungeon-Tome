@@ -13,18 +13,13 @@ RSpec.describe "Session requests" do
         }
       }
 
-      token = Knock::AuthToken.new(payload: { sub: usr01.id }).token
+      # token = Knock::AuthToken.new(payload: { sub: usr01.id }).token
 
       post(
         api_v1_campaign_sessions_url(campaign01),
         params: session_params.to_json,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': "Bearer #{token}"
-        }
+        headers: authorization_headers(usr01)
       )
-
-      binding.pry
 
       expect(response).to have_http_status :created
       expect_response_to_include_session

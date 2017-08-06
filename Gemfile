@@ -22,6 +22,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'valid_attribute'
+  gem 'json_spec'
 end
 
 group :development do

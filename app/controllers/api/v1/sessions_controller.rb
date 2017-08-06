@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApplicationController
       session = Session.create!(session_params)
       render json: session,
              serializer: SessionSerializer,
-            status: :created
+             status: :created
     end
   end
 

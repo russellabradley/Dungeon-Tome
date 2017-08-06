@@ -59,6 +59,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include Helpers::RequestExpectations, type: :request
+  config.include Helpers::Requests, type: :request
 
 
 end

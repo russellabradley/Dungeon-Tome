@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  # before_action :authenticate_user
+  before_action :authenticate_user
 
   def create
     data = JSON.parse(request.body.read)
