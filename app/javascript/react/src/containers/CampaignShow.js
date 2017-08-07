@@ -103,14 +103,7 @@ class CampaignShow extends React.Component {
           </div>
           <div className="campaignHeader-bottom-bar">
             <div className="container">
-              <div className="row">
-                <div className="col s12 m6">
-                  <UserSearch/>
-                </div>
-                <div className="col s12 m6">
-                  <p>search results</p>
-                </div>
-              </div>
+              <UserSearch/>
             </div>
           </div>
           <div className="campaignHeader-background-image"></div>

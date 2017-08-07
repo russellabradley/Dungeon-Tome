@@ -19,7 +19,7 @@ class Api::V1::UsersController < ApplicationController
     elsif user.campaigns.find_by_id(params[:campaignId]) # if the user already is part of that campaign
       render json: {status: "That user already has a character in this campaign."}
     else
-      render json: { user_id: user.id }
+      render json: { user: {user_id: user.id, user_email: user.email} }
     end
   end
 
