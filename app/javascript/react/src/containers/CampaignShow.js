@@ -11,9 +11,9 @@ class CampaignShow extends React.Component {
     this.state = {
       campaignObj: null,
       lootObj: null,
-      questsArray: [],
-      sessionsArray: [],
-      charactersArray: [],
+      questsArray: null,
+      sessionsArray: null,
+      charactersArray: null,
       showDescription: false
     }
   }
@@ -59,18 +59,14 @@ class CampaignShow extends React.Component {
       descriptionText = this.state.campaignObj.description
     }
 
+
     let sessions
-    sessions = this.state.sessionsArray.map((s, i) => {
-      return(
-        <SessionTile
-          key={s.id}
-          sessionNum={i+1}
-          sessionTitle={s.title}
-          sessionDate={s.date}
-          sessionNotes={s.notes}
-        />
-      )
-    })
+    if (this.state.sessionsArray) {
+      sessions = <SessionContainer
+                      campaignId={this.state.campaignObj.id}
+                      sessionList={this.state.sessionsArray}
+                    />
+    }
 
     let loot
     if (this.state.lootObj) {
@@ -83,16 +79,22 @@ class CampaignShow extends React.Component {
 
     return(
       <div>
-        <div className="deep-purple">
+        <div className="campaignHeader">
           <div className="container">
             <div className="row">
               <div className="col s12 m6 white-text">
-                <h4>{titleText}</h4>
+                <h2>{titleText}</h2>
                 <p>{taglineText}</p>
-                <blockquote>{descriptionText}</blockquote>
+                <div className="campaignHeader-description-container">
+                  <blockquote>{descriptionText}</blockquote>
+                </div>
               </div>
             </div>
           </div>
+          <div className="campaignHeader-bottom-bar">
+            Anything you want
+          </div>
+          <div className="campaignHeader-background-image"></div>
         </div>
         <div className="container">
           <div className="row">

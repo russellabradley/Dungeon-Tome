@@ -86,9 +86,9 @@ class Login extends React.Component {
               <h4 className="center">Log In</h4>
               <form onSubmit={this.handleLogin}>
                 <input id='email' onChange={this.handleInput} />
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input id='password' onChange={this.handleInput} />
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <button className="btn waves-effect waves-light" type='submit'>Log In</button>
               </form>
             </div>
@@ -98,9 +98,9 @@ class Login extends React.Component {
               <h4 className="center">Sign Up</h4>
               <form onSubmit={this.handleSignup}>
                 <input id='signupEmail' onChange={this.handleInput} />
-                <label for="signupEmail">Email</label>
+                <label htmlFor="signupEmail">Email</label>
                 <input id='signupPassword' onChange={this.handleInput} />
-                <label for="signupPassword">Password</label>
+                <label htmlFor="signupPassword">Password</label>
                 <button className="btn waves-effect waves-light" type='submit'>Sign Up</button>
               </form>
             </div>

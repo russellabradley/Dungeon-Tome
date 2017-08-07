@@ -10,10 +10,10 @@ const SessionTile = props => {
         <div className="card-content black-text">
           <p className="grey-text text-lighten-1">{props.sessionDate}</p>
           <span className="card-title">{props.sessionNum}. <strong>{props.sessionTitle}</strong></span>
-          <blockquote>"{props.sessionNotes}"</blockquote>
+          <blockquote>{props.sessionNotes}</blockquote>
         </div>
         <div className="card-action">
-          <a href="#">Edit</a>
+          <a>Edit</a>
         </div>
       </div>
     </div>
