@@ -127,3 +127,33 @@ QUESTS.each do |l|
   quest.assign_attributes(l)
   quest.save!
 end
+
+
+USERS = [
+  {
+    email: "demo@test.com",
+    password: "password",
+  },
+]
+
+USERS.each do |user|
+  user = User.find_or_initialize_by(email: l[:email])
+  user.assign_attributes(user)
+  user.save!
+end
+
+
+CHARACTER = [
+  {
+    campaign_id: 1,
+    user_id: 1,
+    char_name: "Uriah Heep",
+    char_class: "Wizard"
+  },
+]
+
+CHARACTER.each do |char|
+  char = Character.find_or_initialize_by(char_name: l[:char_name])
+  char.assign_attributes(char)
+  char.save!
+end
