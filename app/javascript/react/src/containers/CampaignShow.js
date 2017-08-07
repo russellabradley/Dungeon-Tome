@@ -17,6 +17,7 @@ class CampaignShow extends React.Component {
       charactersArray: null,
       showDescription: false
     }
+    this.redirectToCampaigns = this.redirectToCampaigns.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +47,13 @@ class CampaignShow extends React.Component {
         charactersArray: responseData.campaign.characters})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
+
+  // Redirects to campaigns index page
+  redirectToCampaigns() {
+    return(
+      this.props.history.push('/campaigns')
+    )
   }
 
 
@@ -84,6 +92,7 @@ class CampaignShow extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col s12 m8 white-text">
+                <p><a onClick={this.redirectToCampaigns}>Back to Campaigns</a></p>
                 <h2 className="header-cinzel-font">{titleText}</h2>
                 <p>{taglineText}</p>
                 <div className="campaignHeader-description-container">
@@ -111,7 +120,6 @@ class CampaignShow extends React.Component {
         <div className="container">
           <div className="row">
             {sessions}
-            {loot}
           </div>
         </div>
       </div>
@@ -120,3 +128,5 @@ class CampaignShow extends React.Component {
 }
 
 export default CampaignShow;
+
+// {loot}

@@ -58,8 +58,8 @@ class CampaignsIndex extends React.Component {
           <div className="col s0 m1">
           </div>
           <div className="col s12 m10">
-            {campaigns}
             <button className="btn light-blue lighten-2">+ New Campaign</button>
+            {campaigns}
           </div>
         </div>
       </div>

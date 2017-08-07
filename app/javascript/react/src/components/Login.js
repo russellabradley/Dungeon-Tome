@@ -15,7 +15,9 @@ class Login extends React.Component {
       email: '',
       password: '',
       signupEmail: '',
-      signupPassword: ''
+      signupPassword: '',
+
+      badLogin: false
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -33,6 +35,9 @@ class Login extends React.Component {
       if (response.ok) {
         return response;
       } else {
+        // set state error true and show a div that says bad login
+        this.setState({badLogin: true})
+        // Error message
         let errorMessage = `${response.status} (${response.statusText})`,
           error = new Error(errorMessage);
         throw(error);
@@ -67,7 +72,6 @@ class Login extends React.Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-
   handleInput (event) {
     this.setState({
       [event.target.id]: event.target.value
@@ -76,36 +80,51 @@ class Login extends React.Component {
 
   render () {
 
+    let loginErrorMessage
+    if (this.state.badLogin) {
+      loginErrorMessage =
+        <p className="red-text lighten-2">
+          Username or password does not match.
+        </p>
+    }
+
     return (
-      <div>
-        <div className="container">
-          <div className="row">
-            <div className="col s1 m2">
-            </div>
-            <div className="col s10 m8">
-              <h4 className="center">Log In</h4>
-              <form onSubmit={this.handleLogin}>
-                <input id='email' onChange={this.handleInput} />
-                <label htmlFor="email">Email</label>
-                <input id='password' onChange={this.handleInput} />
-                <label htmlFor="password">Password</label>
-                <button className="btn waves-effect waves-light" type='submit'>Log In</button>
-              </form>
-            </div>
+      <div className="login-background-image">
+      <div className="container">
+        <div className="row">
+          <div className="col s1 m2">
           </div>
-          <div className="row">
-            <div className="col s10 m8">
-              <h4 className="center">Sign Up</h4>
-              <form onSubmit={this.handleSignup}>
-                <input id='signupEmail' onChange={this.handleInput} />
-                <label htmlFor="signupEmail">Email</label>
-                <input id='signupPassword' onChange={this.handleInput} />
-                <label htmlFor="signupPassword">Password</label>
-                <button className="btn waves-effect waves-light" type='submit'>Sign Up</button>
-              </form>
+          <div className="col s10 m8">
+
+            <div className="login-background white-text">
+              <div className="container">
+                <h4 className="center header-cinzel-font">Log In</h4>
+                {loginErrorMessage}
+                <form onSubmit={this.handleLogin}>
+                  <p>Email</p>
+                  <input id='email' onChange={this.handleInput} />
+                  <p>Password</p>
+                  <input id='password' onChange={this.handleInput} />
+                  <button className="btn blue lighten-2" type='submit'>Log In</button>
+                </form>
+              </div>
             </div>
+
           </div>
         </div>
+        <div className="row">
+          <div className="col s10 m8">
+            <h4 className="center header-cinzel-font">Sign Up</h4>
+            <form onSubmit={this.handleSignup}>
+              <p>Email</p>
+              <input id='signupEmail' onChange={this.handleInput} />
+              <p>Password</p>
+              <input id='signupPassword' onChange={this.handleInput} />
+              <button className="btn blue lighten-2" type='submit'>Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
       </div>
     )
   }
