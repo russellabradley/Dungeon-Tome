@@ -94,7 +94,7 @@ class CampaignShow extends React.Component {
               <div className="col s12 m8 white-text">
                 <p><a onClick={this.redirectToCampaigns}>Back to Campaigns</a></p>
                 <h2 className="header-cinzel-font">{titleText}</h2>
-                <p>{taglineText}</p>
+                <p><i>{taglineText}</i></p>
                 <div className="campaignHeader-description-container">
                   <blockquote>{descriptionText}</blockquote>
                 </div>
@@ -102,7 +102,6 @@ class CampaignShow extends React.Component {
             </div>
           </div>
           <div className="campaignHeader-bottom-bar">
-
             <div className="container">
               <div className="row">
                 <div className="col s12 m6">
@@ -113,7 +112,6 @@ class CampaignShow extends React.Component {
                 </div>
               </div>
             </div>
-
           </div>
           <div className="campaignHeader-background-image"></div>
         </div>

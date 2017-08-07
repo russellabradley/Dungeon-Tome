@@ -30,6 +30,12 @@ class Login extends React.Component {
     this.submissionIsValid = this.submissionIsValid.bind(this);
   }
 
+  componentWillMount() {
+    if (window.localStorage.getItem('token')) {
+      {this.props.history.push('/campaigns')}
+    }
+  }
+
   handleLogin (event) {
     event.preventDefault()
     // add validations before submitting
@@ -113,6 +119,7 @@ class Login extends React.Component {
 
 
   render () {
+
     let loginErrorMessage
     if (this.state.badLogin) {
       loginErrorMessage =
