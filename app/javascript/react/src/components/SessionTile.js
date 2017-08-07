@@ -12,12 +12,13 @@ const SessionTile = props => {
           <span className="card-title">{props.sessionNum}. <strong>{props.sessionTitle}</strong></span>
           <blockquote>{props.sessionNotes}</blockquote>
         </div>
-        <div className="card-action">
-          <a>Edit</a>
-        </div>
       </div>
     </div>
   )
 }
 
 export default SessionTile;
+
+// <div className="card-action">
+// <a>Edit</a>
+// </div>
