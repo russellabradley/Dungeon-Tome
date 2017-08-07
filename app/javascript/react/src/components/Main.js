@@ -6,7 +6,7 @@ import {
  Link
 } from 'react-router-dom';
 
-import Login from './Login';
+import Login from '../containers/LoginPageContainer';
 import CampaignsIndex from '../containers/CampaignsIndex';
 import CampaignShow from '../containers/CampaignShow';
 
