@@ -122,9 +122,9 @@ QUESTS = [
   },
 ]
 
-QUESTS.each do |l|
-  quest = Quest.find_or_initialize_by(title: l[:title])
-  quest.assign_attributes(l)
+QUESTS.each do |q|
+  quest = Quest.find_or_initialize_by(title: q[:title])
+  quest.assign_attributes(q)
   quest.save!
 end
 
@@ -136,9 +136,9 @@ USERS = [
   },
 ]
 
-USERS.each do |user|
-  user = User.find_or_initialize_by(email: l[:email])
-  user.assign_attributes(user)
+USERS.each do |u|
+  user = User.find_or_initialize_by(email: u[:email])
+  user.assign_attributes(u)
   user.save!
 end
 
@@ -152,10 +152,8 @@ CHARACTER = [
   },
 ]
 
-CHARACTER.each do |char|
-  char = Character.find_or_initialize_by(char_name: l[:char_name])
-  char.assign_attributes(char)
+CHARACTER.each do |c|
+  char = Character.find_or_initialize_by(char_name: c[:char_name])
+  char.assign_attributes(c)
   char.save!
 end
-
-# test
