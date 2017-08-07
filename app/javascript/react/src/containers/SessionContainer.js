@@ -8,21 +8,25 @@ import SessionCreatorContainer from './SessionCreator';
 class SessionContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      sessions: this.props.sessionList,
+    }
 
     this.createSession = this.createSession.bind(this);
   }
 
 
+  // POST fetch to create new session
   createSession(sessionData) {
     event.preventDefault();
     fetch(`/api/v1/campaigns/${this.props.campaignId}/sessions`, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+        'Authorization': `Bearer ${window.localStorage.getItem('token')}`
       },
       method: 'POST',
       body: JSON.stringify({
-        session: sessionData
+        session: sessionData // Adds session{} key to data being sent
       })
     })
     .then(response => {
@@ -36,24 +40,31 @@ class SessionContainer extends React.Component {
     })
     .then((response) => response.json())
     .then(responseData => {
+      // Figure out how to add submitted session to list of sessions...
+        this.setState(prevState => ({
+          sessions: [...prevState.sessions, responseData.session]
+        }))
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-
+  
 
   render() {
-    let sessionTiles = this.props.sessionList.map(s => {
+    let sessionNumbers = this.state.sessions.length+1
+    let sessionTiles = this.state.sessions.reverse().map(s => {
+      sessionNumbers = sessionNumbers-1;
       return(
         <SessionTile
           key={s.id}
           id={s.id}
-          sessionNum={s.id}
+          sessionNum={sessionNumbers}
           sessionTitle={s.title}
           sessionDate={s.date}
           sessionNotes={s.notes}
         />
       )
     })
+
 
     let sessionCreatorContainer = <SessionCreatorContainer
                                     campaignId={this.props.campaignId}
@@ -62,6 +73,7 @@ class SessionContainer extends React.Component {
 
     return(
       <div>
+        <p></p>
         {sessionCreatorContainer}
         {sessionTiles}
       </div>

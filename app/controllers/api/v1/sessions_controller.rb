@@ -1,4 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
+  before_action :authenticate_user
 
   def create
     if campaign.users.include?(current_user)
@@ -9,6 +10,11 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
 
+  def patch
+    if campaign.users.include?(current_user)
+      # patch request here to edit session
+    end
+  end
 
   private
 

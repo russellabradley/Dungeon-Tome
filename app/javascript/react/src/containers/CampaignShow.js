@@ -83,7 +83,7 @@ class CampaignShow extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col s12 m6 white-text">
-                <h4>{titleText}</h4>
+                <h2>{titleText}</h2>
                 <p>{taglineText}</p>
                 <div className="campaignHeader-description-container">
                   <blockquote>{descriptionText}</blockquote>
