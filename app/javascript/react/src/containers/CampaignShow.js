@@ -1,5 +1,6 @@
 import React from 'react';
 
+import UserSearch from './UserSearch'
 import SessionContainer from './SessionContainer';
 import SessionTile from '../components/SessionTile';
 import Loot from '../components/Loot';
@@ -16,6 +17,7 @@ class CampaignShow extends React.Component {
       charactersArray: null,
       showDescription: false
     }
+    this.redirectToCampaigns = this.redirectToCampaigns.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +47,13 @@ class CampaignShow extends React.Component {
         charactersArray: responseData.campaign.characters})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
+
+  // Redirects to campaigns index page
+  redirectToCampaigns() {
+    return(
+      this.props.history.push('/campaigns')
+    )
   }
 
 
@@ -82,8 +91,9 @@ class CampaignShow extends React.Component {
         <div className="campaignHeader">
           <div className="container">
             <div className="row">
-              <div className="col s12 m6 white-text">
-                <h2>{titleText}</h2>
+              <div className="col s12 m8 white-text">
+                <p><a onClick={this.redirectToCampaigns}>Back to Campaigns</a></p>
+                <h2 className="header-cinzel-font">{titleText}</h2>
                 <p>{taglineText}</p>
                 <div className="campaignHeader-description-container">
                   <blockquote>{descriptionText}</blockquote>
@@ -92,14 +102,24 @@ class CampaignShow extends React.Component {
             </div>
           </div>
           <div className="campaignHeader-bottom-bar">
-            Anything you want
+
+            <div className="container">
+              <div className="row">
+                <div className="col s12 m6">
+                  <UserSearch/>
+                </div>
+                <div className="col s12 m6">
+                  <p>search results</p>
+                </div>
+              </div>
+            </div>
+
           </div>
           <div className="campaignHeader-background-image"></div>
         </div>
         <div className="container">
           <div className="row">
             {sessions}
-            {loot}
           </div>
         </div>
       </div>
@@ -108,3 +128,5 @@ class CampaignShow extends React.Component {
 }
 
 export default CampaignShow;
+
+// {loot}
