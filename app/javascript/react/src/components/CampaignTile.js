@@ -11,7 +11,7 @@ const CampaignTile = props => {
     <div className="card small hoverable">
       <div className="card-image">
         <img src={campaignTileImage}/>
-        <span className="card-title">{props.title}</span>
+        <span className="card-title header-cinzel-font">{props.title}</span>
       </div>
       <div className="card-content">
         <p>{props.tagline}</p>

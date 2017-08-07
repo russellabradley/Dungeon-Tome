@@ -51,6 +51,7 @@ class CampaignsIndex extends React.Component {
       })
     }
 
+
     return(
       <div className="container">
         <div className='row'>
@@ -58,6 +59,7 @@ class CampaignsIndex extends React.Component {
           </div>
           <div className="col s12 m10">
             {campaigns}
+            <button className="btn light-blue lighten-2">+ New Campaign</button>
           </div>
         </div>
       </div>

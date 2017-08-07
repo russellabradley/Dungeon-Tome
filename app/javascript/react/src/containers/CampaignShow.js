@@ -1,5 +1,6 @@
 import React from 'react';
 
+import UserSearch from './UserSearch'
 import SessionContainer from './SessionContainer';
 import SessionTile from '../components/SessionTile';
 import Loot from '../components/Loot';
@@ -82,8 +83,8 @@ class CampaignShow extends React.Component {
         <div className="campaignHeader">
           <div className="container">
             <div className="row">
-              <div className="col s12 m6 white-text">
-                <h2>{titleText}</h2>
+              <div className="col s12 m8 white-text">
+                <h2 className="header-cinzel-font">{titleText}</h2>
                 <p>{taglineText}</p>
                 <div className="campaignHeader-description-container">
                   <blockquote>{descriptionText}</blockquote>
@@ -92,7 +93,18 @@ class CampaignShow extends React.Component {
             </div>
           </div>
           <div className="campaignHeader-bottom-bar">
-            Anything you want
+
+            <div className="container">
+              <div className="row">
+                <div className="col s12 m6">
+                  <UserSearch/>
+                </div>
+                <div className="col s12 m6">
+                  <p>search results</p>
+                </div>
+              </div>
+            </div>
+
           </div>
           <div className="campaignHeader-background-image"></div>
         </div>
