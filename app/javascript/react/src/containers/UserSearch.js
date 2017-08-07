@@ -5,15 +5,16 @@ class UserSearch extends React.Component {
     super(props)
     this.state = {
       query: "",
-      users: []
+      userId: []
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.addNewUserIdToArray = this.addNewUserIdToArray.bind(this);
   }
 
   handleSearch(event) {
     event.preventDefault()
-    let query = '?email=' + encodeURIComponent(this.state.query);
+    let query = '?email=' + encodeURIComponent(this.state.query) + '&campaignId=' + encodeURIComponent(1);
     fetch('/api/v1/users/search' + query, {
       headers: {
         'Content-Type': 'application/json',
@@ -31,6 +32,8 @@ class UserSearch extends React.Component {
     })
     .then(response => {
       console.log(response)
+      // Adds returned user id to the userId array in state
+      this.addNewUserIdToArray(response)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
     // Clear the search query
@@ -41,6 +44,10 @@ class UserSearch extends React.Component {
     this.setState({
       [event.target.id]: event.target.value
     })
+  }
+
+  addNewUserIdToArray(response) {
+    this.setState({userId:[...this.state.userId, response.user_id]})
   }
 
 
