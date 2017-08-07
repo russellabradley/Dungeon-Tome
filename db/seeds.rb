@@ -157,3 +157,5 @@ CHARACTER.each do |char|
   char.assign_attributes(char)
   char.save!
 end
+
+# test
