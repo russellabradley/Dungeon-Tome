@@ -4,13 +4,10 @@ const Navbar = props => (
   <div className="navbar-fixed">
     <nav>
       <div className="nav-wrapper grey darken-4 z-depth-5">
-        <div className="row">
-          <div className="col s0 m1">
-          </div>
-          <div className="col s0 m8">
-            <a className="brand-logo header-cinzel-font">Dungeon Tome</a>
-          </div>
-        </div>
+        <a href="#!" className="brand-logo header-cinzel-font">Dungeon Tome</a>
+        <ul className="right">
+          <li><a className="grey darken-2 btn">Sign Out</a></li>
+        </ul>
       </div>
     </nav>
   </div>
