@@ -85,7 +85,7 @@ class CampaignNew extends React.Component {
   }
 
   createCharacter(characterFormData) {
-    fetch('/api/v1/campaigns', {
+    fetch('/api/v1/characters', {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${window.localStorage.getItem('token')}`
@@ -104,11 +104,12 @@ class CampaignNew extends React.Component {
     })
     .then((response) => response.json())
     .then(responseData => {
-      
+      // redirect to new campaign
+      this.redirectToCampaigns()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-  }
+
 
 
   validSubmit() {

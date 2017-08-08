@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :characters, only: [:create]
       resources :campaigns do
         resources :sessions, only: [:create, :update]
-        resources :characters, only: [:create]
       end
       resources :users do
         collection do
