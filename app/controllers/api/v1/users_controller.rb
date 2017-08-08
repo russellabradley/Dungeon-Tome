@@ -12,4 +12,15 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def search
+    user = User.find_by(email: params[:email]) # look into activerecord search functions
+    if user == nil
+      render json: {status: "No user found"}
+    elsif user.campaigns.find_by_id(params[:campaignId]) # if the user already is part of that campaign
+      render json: {status: "That user already has a character in this campaign."}
+    else
+      render json: { user: {user_id: user.id, user_email: user.email} }
+    end
+  end
+
 end

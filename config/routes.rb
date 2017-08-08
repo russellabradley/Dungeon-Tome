@@ -14,7 +14,11 @@ Rails.application.routes.draw do
         # resources :loots
         # resources :quests
       end
-      resources :users
+      resources :users do
+        collection do
+          get 'search'
+        end
+      end
     end
   end
 end

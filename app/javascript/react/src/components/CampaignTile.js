@@ -11,10 +11,12 @@ const CampaignTile = props => {
     <div className="card small hoverable">
       <div className="card-image">
         <img src={campaignTileImage}/>
-        <span className="card-title">{props.title}</span>
+        <span className="card-title">
+          <h3 className="header-cinzel-font">{props.title}</h3>
+        </span>
       </div>
       <div className="card-content">
-        <p>{props.tagline}</p>
+        <i>{props.tagline}</i>
       </div>
       <div className="card-action">
         <Link to={campaignLink}>Enter Campaign</Link>
