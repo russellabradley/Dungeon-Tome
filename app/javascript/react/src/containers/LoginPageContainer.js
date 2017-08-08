@@ -114,10 +114,6 @@ class Login extends React.Component {
     }
   }
 
-
-
-
-
   render () {
 
     let loginErrorMessage
