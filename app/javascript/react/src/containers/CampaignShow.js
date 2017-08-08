@@ -20,6 +20,7 @@ class CampaignShow extends React.Component {
     }
     this.redirectToCampaigns = this.redirectToCampaigns.bind(this)
     this.toggleAddUserShow = this.toggleAddUserShow.bind(this)
+    this.handleAddCharacter = this.handleAddCharacter.bind(this)
   }
 
   componentDidMount() {
@@ -61,6 +62,10 @@ class CampaignShow extends React.Component {
   toggleAddUserShow() {
     this.setState({addUsersShow: !this.state.addUsersShow})
     console.log(this.state.addUsersShow)
+  }
+
+  handleAddCharacter(charData) {
+    event.preventDefault();
   }
 
 

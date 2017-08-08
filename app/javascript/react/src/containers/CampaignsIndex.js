@@ -6,10 +6,9 @@ class CampaignsIndex extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      campaignsList: null,
-      showModel: false
+      campaignsList: null
     }
-    this.modelStyle = this.modelStyle.bind(this)
+    this.redirectToNewCampaign = this.redirectToNewCampaign.bind(this)
   }
 
   componentDidMount() {
@@ -35,16 +34,10 @@ class CampaignsIndex extends React.Component {
   .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
 
-  modelStyle () {
-    if (this.state.showModel) {
-      return {
-        transform: 'scale(1)'
-      }
-    } else {
-      return {
-        transform: 'scale(0)'
-      }
-    }
+  redirectToNewCampaign() {
+    return(
+      this.props.history.push('/new')
+    )
   }
 
   render(){
@@ -75,21 +68,9 @@ class CampaignsIndex extends React.Component {
             <div className="col s12 m10">
               <h2 className="header-cinzel-font center">My Campaigns</h2>
               {campaigns}
-              <button onClick={() => {
-                this.setState({
-                  showModel: true
-                })
-              }} className="btn light-blue lighten-2">+ New Campaign</button>
+              <button onClick={this.redirectToNewCampaign} className="btn light-blue lighten-2">+ New Campaign</button>
             </div>
           </div>
-        </div>
-        <div id='add-model' style={this.modelStyle()}>
-          <div onClick={() => this.setState({showModel: false})}>X</div>
-          <form>
-            <input />
-            <input />
-            <input />
-          </form>
         </div>
       </div>
     )

@@ -13,4 +13,20 @@ class Api::V1::CampaignsController < ApplicationController
            root: "campaign"
   end
 
+  def create
+    campaign = Campaign.create!(campaign_params)
+    render json: campaign
+  end
+
+  private
+
+  def campaign_params
+    # binding.pry
+    params.require(:campaign).permit(
+      :title,
+      :tagline,
+      :description
+    )
+  end
+
 end
