@@ -21,6 +21,7 @@ class Login extends React.Component {
       signupPassword: '',
       badLogin: false,
       badSignup: false,
+      userCreated: false,
       signupShow: false
     }
     this.handleLogin = this.handleLogin.bind(this);
@@ -59,9 +60,10 @@ class Login extends React.Component {
       })
       .then(response => response.json())
       .then(data => {
+        // If the token is returned, set it in localstorage
         if (data.jwt) {
           window.localStorage.token = data.jwt
-          this.props.history.push('/campaigns')
+          this.props.history.push('/campaigns') // redirect to campaigns page
         } else {
           // set state error true and show a div that says bad login
         }
@@ -90,8 +92,16 @@ class Login extends React.Component {
         }
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
+      // Set the login credentials to the new signup ones
+      this.setState({
+        email: this.state.signupEmail,
+        password: this.state.signupPassword,
+        signupShow: false, // Bring us back to login screen
+        badSignup: false, // Gets rid of bad signup error
+        userCreated: true // Shows user created message
+      })
     } else {
-      this.setState({badSignup: true})
+      this.setState({badSignup: true}) // Show bad signup error
     }
   }
 
@@ -120,6 +130,9 @@ class Login extends React.Component {
     if (this.state.badLogin) {
       loginErrorMessage =
         <p className="red-text lighten-2">Please enter a valid username and password.</p>
+    } else if (this.state.userCreated) {
+      loginErrorMessage =
+        <p className="green-text lighten-2">Account created successfully!</p>
     }
 
     let signupErrorMessage
@@ -144,6 +157,8 @@ class Login extends React.Component {
         handleInput={this.handleInput}
         toggleSignup={this.toggleSignup}
         loginErrorMessage={loginErrorMessage}
+        emailValue={this.state.email}
+        passwordValue={this.state.password}
         />
     }
 

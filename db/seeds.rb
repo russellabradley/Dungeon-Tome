@@ -143,16 +143,16 @@ USERS.each do |u|
 end
 
 
-CHARACTER = [
+CHARACTERS = [
   {
     campaign_id: 1,
-    user_id: 1,
-    char_name: "Uriah Heep",
-    char_class: "Wizard"
+    user_id: 6,
+    char_name: "Kevon Martin",
+    char_class: "Paladin"
   },
 ]
 
-CHARACTER.each do |c|
+CHARACTERS.each do |c|
   char = Character.find_or_initialize_by(char_name: c[:char_name])
   char.assign_attributes(c)
   char.save!
