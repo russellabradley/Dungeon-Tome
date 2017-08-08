@@ -73,10 +73,9 @@ class UserSearch extends React.Component {
     return(
       <div className="row">
         <div className="col s12 m6">
-          <button className="btn red lighten-2">Cancel</button>
           <form onSubmit={this.handleSearch}>
             <input id="query" value={this.state.query} placeholder="Search for a user by email address" type="text" onChange={this.handleSearchInput}/>
-            <button className="btn light-blue lighten-2 right" type='submit'>Search</button>
+            <button className="btn light-blue lighten-2" type='submit'>Search</button>
           </form>
         </div>
         <div className="col s12 m6">

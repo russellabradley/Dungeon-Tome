@@ -41,17 +41,15 @@ class SessionContainer extends React.Component {
     .then((response) => response.json())
     .then(responseData => {
       // Figure out how to add submitted session to list of sessions...
-        this.setState(prevState => ({
-          sessions: [...prevState.sessions, responseData.session]
-        }))
+      this.setState({sessions: [responseData.session, ...this.state.sessions]})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-  
+
 
   render() {
     let sessionNumbers = this.state.sessions.length+1
-    let sessionTiles = this.state.sessions.reverse().map(s => {
+    let sessionTiles = this.state.sessions.map(s => {
       sessionNumbers = sessionNumbers-1;
       return(
         <SessionTile

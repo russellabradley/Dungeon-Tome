@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   get '/campaigns', to: 'static_pages#index'
   get '/campaigns/:id', to: 'static_pages#index'
+  get 'new', to: 'static_pages#index'
 
 
   namespace :api do
     namespace :v1 do
+      resources :characters, only: [:create]
       resources :campaigns do
         resources :sessions, only: [:create, :update]
-        # resources :loots
-        # resources :quests
       end
       resources :users do
         collection do
