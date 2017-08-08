@@ -15,9 +15,11 @@ class CampaignShow extends React.Component {
       questsArray: null,
       sessionsArray: null,
       charactersArray: null,
-      showDescription: false
+      showDescription: false,
+      addUsersShow: false
     }
-    this.redirectToCampaigns = this.redirectToCampaigns.bind(this);
+    this.redirectToCampaigns = this.redirectToCampaigns.bind(this)
+    this.toggleAddUserShow = this.toggleAddUserShow.bind(this)
   }
 
   componentDidMount() {
@@ -43,7 +45,7 @@ class CampaignShow extends React.Component {
         campaignObj: responseData.campaign,
         lootObj: responseData.campaign.loots[0],
         questsArray: responseData.campaign.quests,
-        sessionsArray: responseData.campaign.sessions,
+        sessionsArray: responseData.campaign.sessions.reverse(),
         charactersArray: responseData.campaign.characters})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
@@ -56,17 +58,13 @@ class CampaignShow extends React.Component {
     )
   }
 
+  toggleAddUserShow() {
+    this.setState({addUsersShow: !this.state.addUsersShow})
+    console.log(this.state.addUsersShow)
+  }
+
 
   render() {
-
-    let titleText, taglineText, descriptionText
-
-    if (this.state.campaignObj) {
-      titleText = this.state.campaignObj.title
-      taglineText = this.state.campaignObj.tagline
-      descriptionText = this.state.campaignObj.description
-    }
-
     // if (this.state.showDescription) {
     //   descriptionText =
     //     <div>
@@ -78,6 +76,22 @@ class CampaignShow extends React.Component {
     //     <p onClick={() => this.setState({showDescription: true})}>Show description...</p>
     // }
 
+    let titleText, taglineText, descriptionText
+
+    if (this.state.campaignObj) {
+      titleText = this.state.campaignObj.title
+      taglineText = this.state.campaignObj.tagline
+      descriptionText = this.state.campaignObj.description
+    }
+
+    let characterTags
+    if (this.state.charactersArray) {
+      characterTags = this.state.charactersArray.map (c => {
+        return(
+          <div className="chip">{c.char_name}, {c.char_class}</div>
+        )
+      })
+    }
 
     let sessions
     if (this.state.sessionsArray) {
@@ -93,6 +107,15 @@ class CampaignShow extends React.Component {
               inventory={this.state.lootObj.inventory}
               gold={this.state.lootObj.gold}
             />
+    }
+
+    let addUserButtonClass, addUserButtonText
+    if (this.state.addUsersShow) {
+      addUserButtonClass = "btn red lighten-2"
+      addUserButtonText = "Cancel"
+    } else {
+      addUserButtonClass = "btn green lighten-2"
+      addUserButtonText = "+ Add Player"
     }
 
 
@@ -115,6 +138,13 @@ class CampaignShow extends React.Component {
           </div>
           <div className="campaignHeader-bottom-bar">
             <div className="container">
+              <h5 className="header-cinzel-font center">Characters</h5>
+              <div className="center">
+                {characterTags}
+                <button onClick={this.toggleAddUserShow} className={addUserButtonClass}>
+                  {addUserButtonText}
+                </button>
+              </div>
               <UserSearch/>
             </div>
           </div>
