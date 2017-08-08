@@ -146,10 +146,22 @@ end
 CHARACTERS = [
   {
     campaign_id: 1,
-    user_id: 6,
-    char_name: "Kevon Martin",
+    user_id: 1,
+    char_name: "Kevon",
     char_class: "Paladin"
   },
+  {
+    campaign_id: 2,
+    user_id: 1,
+    char_name: "Uriah Heep",
+    char_class: "Wizard"
+  },
+  {
+    campaign_id: 3,
+    user_id: 1,
+    char_name: "L'enard",
+    char_class: "Ranger"
+  }
 ]
 
 CHARACTERS.each do |c|
