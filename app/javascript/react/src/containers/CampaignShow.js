@@ -119,5 +119,3 @@ class CampaignShow extends React.Component {
 }
 
 export default CampaignShow;
-
-// {loot}

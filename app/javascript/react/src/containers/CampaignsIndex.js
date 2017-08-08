@@ -6,8 +6,10 @@ class CampaignsIndex extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      campaignsList: null
+      campaignsList: null,
+      showModel: false
     }
+    this.modelStyle = this.modelStyle.bind(this)
   }
 
   componentDidMount() {
@@ -33,6 +35,18 @@ class CampaignsIndex extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`))
     }
 
+  modelStyle () {
+    if (this.state.showModel) {
+      return {
+        transform: 'scale(1)'
+      }
+    } else {
+      return {
+        transform: 'scale(0)'
+      }
+    }
+  }
+
   render(){
     let campaigns
     if (this.state.campaignsList) {
@@ -53,14 +67,29 @@ class CampaignsIndex extends React.Component {
 
 
     return(
-      <div className="container">
-        <div className='row'>
-          <div className="col s0 m1">
+      <div className='flexie'>
+        <div className="container">
+          <div className='row'>
+            <div className="col s0 m1">
+            </div>
+            <div className="col s12 m10">
+              <h2 className="header-cinzel-font center">My Campaigns</h2>
+              {campaigns}
+              <button onClick={() => {
+                this.setState({
+                  showModel: true
+                })
+              }} className="btn light-blue lighten-2">+ New Campaign</button>
+            </div>
           </div>
-          <div className="col s12 m10">
-            <button className="btn light-blue lighten-2">+ New Campaign</button>
-            {campaigns}
-          </div>
+        </div>
+        <div id='add-model' style={this.modelStyle()}>
+          <div onClick={() => this.setState({showModel: false})}>X</div>
+          <form>
+            <input />
+            <input />
+            <input />
+          </form>
         </div>
       </div>
     )

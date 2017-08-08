@@ -152,15 +152,19 @@ class Login extends React.Component {
     }
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col m2">
-          </div>
-          <div className="col s12 m8">
-            <div className="login-background white-text">
-            {loginOrSignup}
+      <div>
+        <div className="container">
+          <div className="row">
+            <div className="col m2">
+            </div>
+            <div className="col s12 m8">
+              <div className="login-background white-text">
+              {loginOrSignup}
+              </div>
             </div>
           </div>
+        </div>
+        <div className="login-background-image">
         </div>
       </div>
     )
