@@ -59,14 +59,24 @@ class CampaignShow extends React.Component {
 
   render() {
 
-    let titleText
-    let taglineText
-    let descriptionText
+    let titleText, taglineText, descriptionText
+
     if (this.state.campaignObj) {
       titleText = this.state.campaignObj.title
       taglineText = this.state.campaignObj.tagline
       descriptionText = this.state.campaignObj.description
     }
+
+    // if (this.state.showDescription) {
+    //   descriptionText =
+    //     <div>
+    //       {this.state.campaignObj.description}
+    //       <p onClick={() => this.setState({showDescription: false})}>Hide description ^</p>
+    //     </div>
+    // } else {
+    //   descriptionText =
+    //     <p onClick={() => this.setState({showDescription: true})}>Show description...</p>
+    // }
 
 
     let sessions
@@ -96,7 +106,9 @@ class CampaignShow extends React.Component {
                 <h2 className="header-cinzel-font">{titleText}</h2>
                 <p><i>{taglineText}</i></p>
                 <div className="campaignHeader-description-container">
-                  <blockquote>{descriptionText}</blockquote>
+                  <blockquote>
+                    {descriptionText}
+                  </blockquote>
                 </div>
               </div>
             </div>
