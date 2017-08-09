@@ -7,16 +7,18 @@ class UserSearch extends React.Component {
     super(props)
     this.state = {
       query: "",
-      usersArray: []
+      usersArray: [],
+      charName: "",
+      charClass: ""
     }
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.handleInput = this.handleInput.bind(this);
     this.addNewUserToArray = this.addNewUserToArray.bind(this);
   }
 
   handleSearch(event) {
     event.preventDefault()
-    let query = '?email=' + encodeURIComponent(this.state.query) + '&campaignId=' + encodeURIComponent(1);
+    let query = '?email=' + encodeURIComponent(this.state.query) + '&campaignId=' + encodeURIComponent(this.props.campaignId);
     fetch('/api/v1/users/search' + query, {
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +46,7 @@ class UserSearch extends React.Component {
     this.setState({query: "", usersArray: []})
   }
 
-  handleSearchInput(event) {
+  handleInput(event) {
     this.setState({
       [event.target.id]: event.target.value
     })
@@ -57,7 +59,12 @@ class UserSearch extends React.Component {
 
   render() {
 
-    let results
+    let results, buttonClass
+    if (this.state.charName === "") {
+      buttonClass = "btn blue lighten-2 disabled"
+    } else {
+      buttonClass = "btn blue lighten-2"
+    }
     if (this.state.usersArray.length > 0) {
       results = this.state.usersArray.map (u => {
         return(
@@ -65,6 +72,10 @@ class UserSearch extends React.Component {
             key={u.user_id}
             email={u.user_email}
             id={u.user_id}
+            buttonClass={buttonClass}
+            nameValue={this.state.charName}
+            classValue={this.state.charClass}
+            handleInput={this.handleInput}
           />
         )
       })
@@ -74,8 +85,7 @@ class UserSearch extends React.Component {
       <div className="row">
         <div className="col s12 m6">
           <form onSubmit={this.handleSearch}>
-            <input id="query" value={this.state.query} placeholder="Search for a user by email address" type="text" onChange={this.handleSearchInput}/>
-            <button className="btn light-blue lighten-2" type='submit'>Search</button>
+            <input id="query" value={this.state.query} placeholder="Search for a user by email address" onChange={this.handleInput}/>
           </form>
         </div>
         <div className="col s12 m6">

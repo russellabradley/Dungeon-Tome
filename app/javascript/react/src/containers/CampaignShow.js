@@ -81,12 +81,13 @@ class CampaignShow extends React.Component {
     //     <p onClick={() => this.setState({showDescription: true})}>Show description...</p>
     // }
 
-    let titleText, taglineText, descriptionText
-
+    let titleText, taglineText, descriptionText, campaignId, sessionList
     if (this.state.campaignObj) {
       titleText = this.state.campaignObj.title
       taglineText = this.state.campaignObj.tagline
       descriptionText = this.state.campaignObj.description
+      campaignId = this.state.campaignObj.id
+      sessionList = this.state.sessionsArray
     }
 
     let characterTags
@@ -101,8 +102,8 @@ class CampaignShow extends React.Component {
     let sessions
     if (this.state.sessionsArray) {
       sessions = <SessionContainer
-                      campaignId={this.state.campaignObj.id}
-                      sessionList={this.state.sessionsArray}
+                      campaignId={campaignId}
+                      sessionList={sessionList}
                     />
     }
 
@@ -150,7 +151,7 @@ class CampaignShow extends React.Component {
                   {addUserButtonText}
                 </button>
               </div>
-              <UserSearch/>
+              <UserSearch campaignId={campaignId}/>
             </div>
           </div>
           <div className="campaignHeader-background-image"></div>
