@@ -134,6 +134,14 @@ USERS = [
     email: "demo@test.com",
     password: "password",
   },
+  {
+    email: "demo2@test.com",
+    password: "password",
+  },
+  {
+    email: "demo3@test.com",
+    password: "password",
+  }
 ]
 
 USERS.each do |u|
@@ -161,6 +169,12 @@ CHARACTERS = [
     user_id: 1,
     char_name: "L'enard",
     char_class: "Ranger"
+  },
+  {
+    campaign_id: 1,
+    user_id: 2,
+    char_name: "Gandalf",
+    char_class: "Wizard"
   }
 ]
 

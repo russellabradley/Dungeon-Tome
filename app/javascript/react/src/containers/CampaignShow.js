@@ -115,13 +115,15 @@ class CampaignShow extends React.Component {
             />
     }
 
-    let addUserButtonClass, addUserButtonText
+    let addUserButtonClass, addUserButtonText, userSearch
     if (this.state.addUsersShow) {
       addUserButtonClass = "btn red lighten-2"
       addUserButtonText = "Cancel"
+      userSearch = <UserSearch campaignId={campaignId}/>
     } else {
       addUserButtonClass = "btn green lighten-2"
       addUserButtonText = "+ Add Player"
+      userSearch = null
     }
 
 
@@ -151,7 +153,7 @@ class CampaignShow extends React.Component {
                   {addUserButtonText}
                 </button>
               </div>
-              <UserSearch campaignId={campaignId}/>
+              {userSearch}
             </div>
           </div>
           <div className="campaignHeader-background-image"></div>
