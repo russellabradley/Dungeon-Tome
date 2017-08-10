@@ -73,7 +73,7 @@ class SessionCreator extends React.Component {
     } else {
       sessionFormClasses = "newSessionForm -inactive"
       sessionCreatorButtonClasses = "btn green lighten-1 sessionCreator-inactive"
-      newSessionButtonText = "+ New Session"
+      newSessionButtonText = "New Session"
     }
 
     // Form to create new session
