@@ -147,7 +147,6 @@ class CampaignShow extends React.Component {
       addUserButtonClass = "btn blue lighten-2"
       addUserButtonText = "+ Add Player"
       searchWindowClasses = "newSessionForm -inactive"
-      // userSearch = null
     }
 
 
@@ -162,9 +161,12 @@ class CampaignShow extends React.Component {
     }
 
     // Description text toggle button
-    let descriptionToggle = <p onClick={this.toggleDescriptionTextShow}>
-                              {descriptionToggleText}
-                            </p>
+    let descriptionToggle
+    if (this.state.campaignObj) {
+      if (this.state.campaignObj.description) {
+        descriptionToggle = <div onClick={this.toggleDescriptionTextShow}>{descriptionToggleText}</div>
+      }
+    }
 
 
     return(

@@ -98,7 +98,8 @@ class Login extends React.Component {
         password: this.state.signupPassword,
         signupShow: false, // Bring us back to login screen
         badSignup: false, // Gets rid of bad signup error
-        userCreated: true // Shows user created message
+        userCreated: true, // Shows user created message
+        badLogin: false
       })
     } else {
       this.setState({badSignup: true}) // Show bad signup error
@@ -117,7 +118,6 @@ class Login extends React.Component {
 
   submissionIsValid(e, p) {
     if (e === '' || p === '') {
-      debugger;
       return false
     } else {
       return true

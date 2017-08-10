@@ -13,6 +13,8 @@ class CampaignNew extends React.Component {
       description: '',
       charName: '',
       charClass: '',
+      titleError: '',
+      nameError: ''
     }
 
     this.redirectToCampaigns = this.redirectToCampaigns.bind(this)
@@ -114,12 +116,21 @@ class CampaignNew extends React.Component {
 
 
   validSubmit() {
-    if (this.state.title === '' || this.state.charName === '') {
-      console.log("failed validation")
-      return false
+    let approved = true
+    if (this.state.title === '') {
+      this.setState({titleError: "Please enter a valid title for your campaign."})
+      approved = false
     } else {
-      console.log("passed validation")
-      return true
+      this.setState({titleError: ""})
+    }
+    if (this.state.charName === '') {
+      this.setState({nameError: "Please enter a valid name for your character."})
+      approved = false
+    } else {
+      this.setState({nameError: ""})
+    }
+    if (approved) {
+      return approved
     }
   }
 
@@ -132,6 +143,7 @@ class CampaignNew extends React.Component {
         <h5 className="header-cinzel-font">Campaign Details:</h5>
         <form>
           <p>Title <i>(required)</i></p>
+          <p className="red-text">{this.state.titleError}</p>
             <input id="title" className="input-field" placeholder="The Lord of the Rings" onChange={this.handleInput} value={this.state.title}/>
           <p>Tagline</p>
             <input id="tagline" placeholder="A quest to destroy the evil ring of power." onChange={this.handleInput} value={this.state.tagline}/>
@@ -141,6 +153,7 @@ class CampaignNew extends React.Component {
         <h5 className="header-cinzel-font">Your Character:</h5>
         <form>
           <p>Your Character Name <i>(required)</i></p>
+          <p className="red-text">{this.state.nameError}</p>
             <input id="charName" placeholder="Gandalf the Grey (or Dungeon Master)" onChange={this.handleInput} value={this.state.charName}/>
           <p>Your Character Class</p>
             <input id="charClass" placeholder="Wizard" onChange={this.handleInput} value={this.state.charClass}/>
