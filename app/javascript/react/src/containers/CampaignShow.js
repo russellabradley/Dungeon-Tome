@@ -14,9 +14,8 @@ class CampaignShow extends React.Component {
       sessionsArray: null,
       charactersArray: [],
       showDescription: false,
-      addUsersShow: false
-      // lootObj: null,
-      // questsArray: null,
+      addUsersShow: false,
+      currentUser: null
     }
     this.redirectToCampaigns = this.redirectToCampaigns.bind(this)
     this.toggleAddUserShow = this.toggleAddUserShow.bind(this)
@@ -46,9 +45,8 @@ class CampaignShow extends React.Component {
       this.setState({
         campaignObj: responseData.campaign,
         sessionsArray: responseData.campaign.sessions.reverse(),
-        charactersArray: responseData.campaign.characters
-        // lootObj: responseData.campaign.loots[0],
-        // questsArray: responseData.campaign.quests,
+        charactersArray: responseData.campaign.characters,
+        currentUser: responseData.campaign.user_id
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
@@ -114,15 +112,21 @@ class CampaignShow extends React.Component {
     }
 
 
-    let chipContent
+    let chipContent, chipClass
     let characterTags = this.state.charactersArray.map (c => {
+      debugger;
+      if (c.user_id === this.state.currentUser) {
+        chipClass = "chip yellow lighten-3"
+      } else {
+        chipClass = "chip"
+      }
       if (c.char_class === "") {
         chipContent = c.char_name
       } else {
         chipContent = `${c.char_name}, ${c.char_class}`
       }
       return(
-        <div className="chip">{chipContent}</div>
+        <div className={chipClass}>{chipContent}</div>
       )
     })
 
