@@ -15,9 +15,9 @@ class Login extends React.Component {
   constructor () {
     super()
     this.state = {
-      email: '',
+      username: '',
       password: '',
-      signupEmail: '',
+      signupUsername: '',
       signupPassword: '',
       badLogin: false,
       badSignup: false,
@@ -40,11 +40,11 @@ class Login extends React.Component {
   handleLogin (event) {
     event.preventDefault()
     // add validations before submitting
-    if (this.submissionIsValid(this.state.email, this.state.password)) {
+    if (this.submissionIsValid(this.state.username, this.state.password)) {
       fetch('/user_token', {
         headers: {'Content-Type': 'application/json'},
         method: 'POST',
-        body: JSON.stringify({"auth": {"email": this.state.email, "password": this.state.password}})
+        body: JSON.stringify({"auth": {"email": this.state.username, "password": this.state.password}})
       })
       .then(response => {
         if (response.ok) {
@@ -77,10 +77,10 @@ class Login extends React.Component {
 
   handleSignup(event) {
     event.preventDefault();
-    if (this.submissionIsValid(this.state.signupEmail, this.state.signupPassword)) {
+    if (this.submissionIsValid(this.state.signupUsername, this.state.signupPassword)) {
       fetch('/api/v1/users', {
         method: 'POST',
-        body: JSON.stringify({email: this.state.signupEmail, password: this.state.signupPassword})
+        body: JSON.stringify({email: this.state.signupUsername, password: this.state.signupPassword})
       }).then(response => {
         if (response.ok) {
           return response;
@@ -94,7 +94,7 @@ class Login extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
       // Set the login credentials to the new signup ones
       this.setState({
-        email: this.state.signupEmail,
+        username: this.state.signupUsername,
         password: this.state.signupPassword,
         signupShow: false, // Bring us back to login screen
         badSignup: false, // Gets rid of bad signup error
@@ -138,7 +138,7 @@ class Login extends React.Component {
     let signupErrorMessage
     if (this.state.badSignup) {
       signupErrorMessage =
-        <p className="red-text lighten-2">Please enter a valid email and password.</p>
+        <p className="red-text lighten-2">Please enter a valid username and password.</p>
     }
 
     let loginOrSignup
@@ -157,7 +157,7 @@ class Login extends React.Component {
         handleInput={this.handleInput}
         toggleSignup={this.toggleSignup}
         loginErrorMessage={loginErrorMessage}
-        emailValue={this.state.email}
+        usernameValue={this.state.username}
         passwordValue={this.state.password}
         />
     }

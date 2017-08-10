@@ -2,14 +2,16 @@ import React from 'react'
 
 import UserTile from '../components/UserTile'
 
+
 class UserSearch extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       query: "",
-      usersArray: [],
+      returnedSearchUsersArray: [],
       charName: "",
-      charClass: ""
+      charClass: "",
+      userId: ""
     }
     this.handleSearch = this.handleSearch.bind(this)
     this.handleInput = this.handleInput.bind(this)
@@ -37,14 +39,14 @@ class UserSearch extends React.Component {
     })
     .then(response => {
       console.log(response)
-      // Adds returned user id to the usersArray array in state
+      // Adds returned user id to the returnedSearchUsersArray array in state
       if (response.user) {
         this.addNewUserToArray(response) // Only add to array if repsonse is a user and not a warning
       }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
     // Clear the search query
-    this.setState({query: "", usersArray: []})
+    this.setState({query: "", returnedSearchUsersArray: []})
   }
 
   // Creates data to make character from form
@@ -53,7 +55,9 @@ class UserSearch extends React.Component {
     let characterFormPayload = {
       charName: this.state.charName,
       charClass: this.state.charClass,
-      campaignId: this.props.campaignId
+      campaignId: this.props.campaignId,
+      // get user id
+      userId: this.state.returnedSearchUsersArray[0].user_id
     }
     // Sends form data up to create character in CampaignShow
     this.props.createCharacter(characterFormPayload)
@@ -67,7 +71,7 @@ class UserSearch extends React.Component {
   }
 
   addNewUserToArray(response) {
-    this.setState({usersArray:[...this.state.usersArray, response.user]})
+    this.setState({returnedSearchUsersArray:[...this.state.returnedSearchUsersArray, response.user]})
   }
 
 
@@ -79,12 +83,12 @@ class UserSearch extends React.Component {
     } else {
       buttonClass = "btn blue lighten-2"
     }
-    if (this.state.usersArray.length > 0) {
-      results = this.state.usersArray.map (u => {
+    if (this.state.returnedSearchUsersArray.length > 0) {
+      results = this.state.returnedSearchUsersArray.map (u => {
         return(
           <UserTile
             key={u.user_id}
-            email={u.user_email}
+            username={u.user_email}
             id={u.user_id}
             buttonClass={buttonClass}
             nameValue={this.state.charName}
@@ -100,7 +104,7 @@ class UserSearch extends React.Component {
       <div className="row">
         <div className="col s12 m6">
           <form onSubmit={this.handleSearch}>
-            <input id="query" value={this.state.query} placeholder="Search for a user by email address" onChange={this.handleInput}/>
+            <input id="query" value={this.state.query} placeholder="Search for a user by username" onChange={this.handleInput}/>
           </form>
         </div>
         <div className="col s12 m6">

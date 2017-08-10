@@ -79,7 +79,8 @@ class CampaignNew extends React.Component {
     let characterFormPayload = {
       charName: this.state.charName,
       charClass: this.state.charClass,
-      campaignId: campaignId
+      campaignId: campaignId,
+      userId: null
     }
     this.createCharacter(characterFormPayload)
   }

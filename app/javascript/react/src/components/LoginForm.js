@@ -5,8 +5,8 @@ const LoginForm = props => (
     <h4 className="center header-cinzel-font">Log In</h4>
     {props.loginErrorMessage}
     <form onSubmit={props.handleLogin}>
-      <p>Email</p>
-        <input id='email' onChange={props.handleInput} value={props.emailValue}/>
+      <p>Username</p>
+        <input id='username' onChange={props.handleInput} value={props.usernameValue}/>
       <p>Password</p>
         <input type="password" id='password' onChange={props.handleInput} value={props.passwordValue}/>
       <button className="btn green lighten-2 right" type='submit'>Log In</button>

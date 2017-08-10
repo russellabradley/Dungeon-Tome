@@ -3,7 +3,7 @@ import React from 'react';
 import UserSearch from './UserSearch'
 import SessionContainer from './SessionContainer';
 import SessionTile from '../components/SessionTile';
-import Loot from '../components/Loot';
+// import Loot from '../components/Loot';
 
 
 class CampaignShow extends React.Component {
@@ -11,16 +11,16 @@ class CampaignShow extends React.Component {
     super(props)
     this.state = {
       campaignObj: null,
-      lootObj: null,
-      questsArray: null,
       sessionsArray: null,
       charactersArray: [],
       showDescription: false,
       addUsersShow: false
+      // lootObj: null,
+      // questsArray: null,
     }
     this.redirectToCampaigns = this.redirectToCampaigns.bind(this)
     this.toggleAddUserShow = this.toggleAddUserShow.bind(this)
-    this.handleAddCharacter = this.handleAddCharacter.bind(this)
+    this.createCharacter = this.createCharacter.bind(this)
   }
 
   componentWillMount() {
@@ -44,10 +44,10 @@ class CampaignShow extends React.Component {
     .then((responseData) => {
       this.setState({
         campaignObj: responseData.campaign,
-        lootObj: responseData.campaign.loots[0],
-        questsArray: responseData.campaign.quests,
         sessionsArray: responseData.campaign.sessions.reverse(),
         charactersArray: responseData.campaign.characters
+        // lootObj: responseData.campaign.loots[0],
+        // questsArray: responseData.campaign.quests,
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
@@ -62,14 +62,11 @@ class CampaignShow extends React.Component {
 
   toggleAddUserShow() {
     this.setState({addUsersShow: !this.state.addUsersShow})
-    console.log(this.state.addUsersShow)
   }
 
-  handleAddCharacter(charData) {
-    event.preventDefault();
-  }
 
   // Creates character from add user form and adds it to the char array
+  // This method is passed as props to UserSearch
   createCharacter(characterFormData) {
     fetch('/api/v1/characters', {
       headers: {
@@ -91,8 +88,9 @@ class CampaignShow extends React.Component {
     .then((response) => response.json())
     .then(responseData => {
       // Add character to the list of characters
-      debugger;
-      this.setState({charactersArray: [this.state.charactersArray, ...responseData]})
+      let newCharArray = this.state.charactersArray.slice()
+      newCharArray.push(responseData)
+      this.setState({charactersArray: newCharArray})
       this.setState({addUsersShow: false})
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -105,9 +103,9 @@ class CampaignShow extends React.Component {
     if (this.state.campaignObj) {
       titleText = this.state.campaignObj.title
       taglineText = this.state.campaignObj.tagline
-      // descriptionText = this.state.campaignObj.description
       campaignId = this.state.campaignObj.id
       sessionList = this.state.sessionsArray
+      // descriptionText = this.state.campaignObj.description
     }
 
     if (this.state.showDescription) {
@@ -121,14 +119,11 @@ class CampaignShow extends React.Component {
         <p onClick={() => this.setState({showDescription: true})}>Show description...</p>
     }
 
-    let characterTags
-    if (this.state.charactersArray) {
-      characterTags = this.state.charactersArray.map (c => {
-        return(
-          <div className="chip">{c.char_name}, {c.char_class}</div>
-        )
-      })
-    }
+    let characterTags = this.state.charactersArray.map (c => {
+      return(
+        <div className="chip">{c.char_name}, {c.char_class}</div>
+      )
+    })
 
     let sessions
     if (this.state.sessionsArray) {
@@ -136,14 +131,6 @@ class CampaignShow extends React.Component {
                       campaignId={campaignId}
                       sessionList={sessionList}
                     />
-    }
-
-    let loot
-    if (this.state.lootObj) {
-      loot = <Loot
-              inventory={this.state.lootObj.inventory}
-              gold={this.state.lootObj.gold}
-            />
     }
 
     let addUserButtonClass, addUserButtonText, userSearch
