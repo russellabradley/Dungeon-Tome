@@ -8,7 +8,7 @@ const SignupForm = props => (
     <form onSubmit={props.handleSignup}>
       <p>Please enter a username:</p>
         <input id='signupUsername' onChange={props.handleInput} />
-      <p>Create a password:</p>
+      <p>And a password:</p>
         <input type="password" id='signupPassword' onChange={props.handleInput} />
       <button className="btn blue lighten-2 right" type='submit'>Create Account</button>
     </form>

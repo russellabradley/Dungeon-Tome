@@ -14,12 +14,12 @@ class CampaignShow extends React.Component {
       sessionsArray: null,
       charactersArray: [],
       showDescription: false,
-      addUsersShow: false
-      // lootObj: null,
-      // questsArray: null,
+      addUsersShow: false,
+      currentUser: null
     }
     this.redirectToCampaigns = this.redirectToCampaigns.bind(this)
     this.toggleAddUserShow = this.toggleAddUserShow.bind(this)
+    this.toggleDescriptionTextShow = this.toggleDescriptionTextShow.bind(this)
     this.createCharacter = this.createCharacter.bind(this)
   }
 
@@ -45,9 +45,8 @@ class CampaignShow extends React.Component {
       this.setState({
         campaignObj: responseData.campaign,
         sessionsArray: responseData.campaign.sessions.reverse(),
-        charactersArray: responseData.campaign.characters
-        // lootObj: responseData.campaign.loots[0],
-        // questsArray: responseData.campaign.quests,
+        charactersArray: responseData.campaign.characters,
+        currentUser: responseData.campaign.user_id
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
@@ -62,6 +61,10 @@ class CampaignShow extends React.Component {
 
   toggleAddUserShow() {
     this.setState({addUsersShow: !this.state.addUsersShow})
+  }
+
+  toggleDescriptionTextShow() {
+    this.setState({showDescription: !this.state.showDescription})
   }
 
 
@@ -99,30 +102,31 @@ class CampaignShow extends React.Component {
 
   render() {
 
-    let titleText, taglineText, descriptionText, campaignId, sessionList
+    let titleText, taglineText, campaignId, sessionList, descriptionText
     if (this.state.campaignObj) {
       titleText = this.state.campaignObj.title
       taglineText = this.state.campaignObj.tagline
       campaignId = this.state.campaignObj.id
       sessionList = this.state.sessionsArray
-      // descriptionText = this.state.campaignObj.description
-    }
-
-    if (this.state.showDescription) {
-      descriptionText =
-        <div>
-          {this.state.campaignObj.description}
-          <p onClick={() => this.setState({showDescription: false})}>Hide description</p>
-        </div>
-    } else {
-      descriptionText =
-        <p onClick={() => this.setState({showDescription: true})}>Show description...</p>
+      descriptionText = this.state.campaignObj.description
     }
 
 
+    let chipContent, chipClass
     let characterTags = this.state.charactersArray.map (c => {
+      debugger;
+      if (c.user_id === this.state.currentUser) {
+        chipClass = "chip yellow lighten-3"
+      } else {
+        chipClass = "chip"
+      }
+      if (c.char_class === "") {
+        chipContent = c.char_name
+      } else {
+        chipContent = `${c.char_name}, ${c.char_class}`
+      }
       return(
-        <div className="chip">{c.char_name}, {c.char_class}</div>
+        <div className={chipClass}>{chipContent}</div>
       )
     })
 
@@ -135,15 +139,37 @@ class CampaignShow extends React.Component {
                     />
     }
 
-    let addUserButtonClass, addUserButtonText, userSearch
+
+    // User Search stuff
+    let addUserButtonClass, addUserButtonText, searchWindowClasses
+    let userSearch = <UserSearch campaignId={campaignId} createCharacter={this.createCharacter}/>
     if (this.state.addUsersShow) {
       addUserButtonClass = "btn red lighten-2"
       addUserButtonText = "Cancel"
-      userSearch = <UserSearch campaignId={campaignId} createCharacter={this.createCharacter}/>
+      searchWindowClasses = "newSessionForm -active"
     } else {
-      addUserButtonClass = "btn green lighten-2"
+      addUserButtonClass = "btn blue lighten-2"
       addUserButtonText = "+ Add Player"
-      userSearch = null
+      searchWindowClasses = "newSessionForm -inactive"
+    }
+
+
+    // Description text
+    let descriptionTextClasses, descriptionToggleText
+    if (this.state.showDescription) {
+      descriptionTextClasses = "newSessionForm -active"
+      descriptionToggleText = "Hide description"
+    } else {
+      descriptionTextClasses = "newSessionForm -inactive"
+      descriptionToggleText = "Show description..."
+    }
+
+    // Description text toggle button
+    let descriptionToggle
+    if (this.state.campaignObj) {
+      if (this.state.campaignObj.description) {
+        descriptionToggle = <div onClick={this.toggleDescriptionTextShow}>{descriptionToggleText}</div>
+      }
     }
 
 
@@ -156,11 +182,12 @@ class CampaignShow extends React.Component {
                 <p><a onClick={this.redirectToCampaigns}>Back to Campaigns</a></p>
                 <h2 className="header-cinzel-font">{titleText}</h2>
                 <p><i>{taglineText}</i></p>
-                <div className="campaignHeader-description-container">
-                  <blockquote>
+                <blockquote>
+                  <div className={descriptionTextClasses}>
                     {descriptionText}
-                  </blockquote>
-                </div>
+                  </div>
+                  {descriptionToggle}
+                </blockquote>
               </div>
             </div>
           </div>
@@ -171,7 +198,9 @@ class CampaignShow extends React.Component {
                 {characterTags}
                 <button onClick={this.toggleAddUserShow} className={addUserButtonClass}>{addUserButtonText}</button>
               </div>
-              {userSearch}
+              <div className={searchWindowClasses}>
+                {userSearch}
+              </div>
             </div>
           </div>
           <div className="campaignHeader-background-image"></div>
