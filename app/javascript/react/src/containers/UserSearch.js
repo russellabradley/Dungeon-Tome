@@ -11,9 +11,10 @@ class UserSearch extends React.Component {
       charName: "",
       charClass: ""
     }
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleInput = this.handleInput.bind(this);
-    this.addNewUserToArray = this.addNewUserToArray.bind(this);
+    this.handleSearch = this.handleSearch.bind(this)
+    this.handleInput = this.handleInput.bind(this)
+    this.addNewUserToArray = this.addNewUserToArray.bind(this)
+    this.handleCharacterSubmit = this.handleCharacterSubmit.bind(this)
   }
 
   handleSearch(event) {
@@ -46,6 +47,19 @@ class UserSearch extends React.Component {
     this.setState({query: "", usersArray: []})
   }
 
+  // Creates data to make character from form
+  handleCharacterSubmit(event) {
+    event.preventDefault()
+    let characterFormPayload = {
+      charName: this.state.charName,
+      charClass: this.state.charClass,
+      campaignId: this.props.campaignId
+    }
+    // Sends form data up to create character in CampaignShow
+    this.props.createCharacter(characterFormPayload)
+  }
+
+
   handleInput(event) {
     this.setState({
       [event.target.id]: event.target.value
@@ -76,6 +90,7 @@ class UserSearch extends React.Component {
             nameValue={this.state.charName}
             classValue={this.state.charClass}
             handleInput={this.handleInput}
+            handleCharacterSubmit={this.handleCharacterSubmit}
           />
         )
       })

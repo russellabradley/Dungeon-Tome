@@ -6,6 +6,7 @@ class Api::V1::CharactersController < ApplicationController
     char_name = params[:charName]
     char_class = params[:charClass]
     campaign_id = params[:campaignId]
+    # Does not work for adding other users to a campaign
     user_id = current_user.id
     character = Character.create!(
       campaign_id: campaign_id,

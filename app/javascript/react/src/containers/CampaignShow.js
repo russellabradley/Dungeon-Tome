@@ -14,7 +14,7 @@ class CampaignShow extends React.Component {
       lootObj: null,
       questsArray: null,
       sessionsArray: null,
-      charactersArray: null,
+      charactersArray: [],
       showDescription: false,
       addUsersShow: false
     }
@@ -23,7 +23,7 @@ class CampaignShow extends React.Component {
     this.handleAddCharacter = this.handleAddCharacter.bind(this)
   }
 
-  componentDidMount() {
+  componentWillMount() {
     // fetch the data for this campaign from the api
     fetch(`/api/v1/campaigns/${this.props.match.params.id}`, {
       headers: {
@@ -47,7 +47,8 @@ class CampaignShow extends React.Component {
         lootObj: responseData.campaign.loots[0],
         questsArray: responseData.campaign.quests,
         sessionsArray: responseData.campaign.sessions.reverse(),
-        charactersArray: responseData.campaign.characters})
+        charactersArray: responseData.campaign.characters
+      })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
@@ -68,26 +69,56 @@ class CampaignShow extends React.Component {
     event.preventDefault();
   }
 
+  // Creates character from add user form and adds it to the char array
+  createCharacter(characterFormData) {
+    fetch('/api/v1/characters', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+      },
+      method: 'POST',
+      body: JSON.stringify(characterFormData)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then((response) => response.json())
+    .then(responseData => {
+      // Add character to the list of characters
+      debugger;
+      this.setState({charactersArray: [this.state.charactersArray, ...responseData]})
+      this.setState({addUsersShow: false})
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
 
   render() {
-    // if (this.state.showDescription) {
-    //   descriptionText =
-    //     <div>
-    //       {this.state.campaignObj.description}
-    //       <p onClick={() => this.setState({showDescription: false})}>Hide description ^</p>
-    //     </div>
-    // } else {
-    //   descriptionText =
-    //     <p onClick={() => this.setState({showDescription: true})}>Show description...</p>
-    // }
 
     let titleText, taglineText, descriptionText, campaignId, sessionList
     if (this.state.campaignObj) {
       titleText = this.state.campaignObj.title
       taglineText = this.state.campaignObj.tagline
-      descriptionText = this.state.campaignObj.description
+      // descriptionText = this.state.campaignObj.description
       campaignId = this.state.campaignObj.id
       sessionList = this.state.sessionsArray
+    }
+
+    if (this.state.showDescription) {
+      descriptionText =
+        <div>
+          {this.state.campaignObj.description}
+          <p onClick={() => this.setState({showDescription: false})}>Hide description</p>
+        </div>
+    } else {
+      descriptionText =
+        <p onClick={() => this.setState({showDescription: true})}>Show description...</p>
     }
 
     let characterTags
@@ -119,7 +150,7 @@ class CampaignShow extends React.Component {
     if (this.state.addUsersShow) {
       addUserButtonClass = "btn red lighten-2"
       addUserButtonText = "Cancel"
-      userSearch = <UserSearch campaignId={campaignId}/>
+      userSearch = <UserSearch campaignId={campaignId} createCharacter={this.createCharacter}/>
     } else {
       addUserButtonClass = "btn green lighten-2"
       addUserButtonText = "+ Add Player"
@@ -149,9 +180,7 @@ class CampaignShow extends React.Component {
               <h5 className="header-cinzel-font center">Characters</h5>
               <div className="center">
                 {characterTags}
-                <button onClick={this.toggleAddUserShow} className={addUserButtonClass}>
-                  {addUserButtonText}
-                </button>
+                <button onClick={this.toggleAddUserShow} className={addUserButtonClass}>{addUserButtonText}</button>
               </div>
               {userSearch}
             </div>

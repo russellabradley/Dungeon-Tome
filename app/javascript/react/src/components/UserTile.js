@@ -8,7 +8,7 @@ const UserTile = props => {
         <p>Create a character for this player to add them to the campaign.</p>
         <input id="charName" placeholder="Character name" value={props.nameValue} onChange={props.handleInput}/>
         <input id="charClass" placeholder="Class" value={props.classValue} onChange={props.handleInput}/>
-        <button className={props.buttonClass}>Add</button>
+        <button className={props.buttonClass} onClick={props.handleCharacterSubmit}>Add</button>
       </div>
     </div>
   )
