@@ -4,7 +4,7 @@ const UserTile = props => {
   return(
     <div className="card">
       <div className="card-content black-text">
-        <span className="card-title">{props.email}</span>
+        <span className="card-title">{props.username}</span>
         <p>Create a character for this player to add them to the campaign.</p>
         <input id="charName" placeholder="Character name" value={props.nameValue} onChange={props.handleInput}/>
         <input id="charClass" placeholder="Class" value={props.classValue} onChange={props.handleInput}/>

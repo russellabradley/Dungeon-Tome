@@ -3,7 +3,7 @@ import React from 'react';
 import UserSearch from './UserSearch'
 import SessionContainer from './SessionContainer';
 import SessionTile from '../components/SessionTile';
-import Loot from '../components/Loot';
+// import Loot from '../components/Loot';
 
 
 class CampaignShow extends React.Component {
@@ -11,12 +11,12 @@ class CampaignShow extends React.Component {
     super(props)
     this.state = {
       campaignObj: null,
-      lootObj: null,
-      questsArray: null,
       sessionsArray: null,
       charactersArray: [],
       showDescription: false,
       addUsersShow: false
+      // lootObj: null,
+      // questsArray: null,
     }
     this.redirectToCampaigns = this.redirectToCampaigns.bind(this)
     this.toggleAddUserShow = this.toggleAddUserShow.bind(this)
@@ -44,10 +44,10 @@ class CampaignShow extends React.Component {
     .then((responseData) => {
       this.setState({
         campaignObj: responseData.campaign,
-        lootObj: responseData.campaign.loots[0],
-        questsArray: responseData.campaign.quests,
         sessionsArray: responseData.campaign.sessions.reverse(),
         charactersArray: responseData.campaign.characters
+        // lootObj: responseData.campaign.loots[0],
+        // questsArray: responseData.campaign.quests,
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
@@ -138,13 +138,13 @@ class CampaignShow extends React.Component {
                     />
     }
 
-    let loot
-    if (this.state.lootObj) {
-      loot = <Loot
-              inventory={this.state.lootObj.inventory}
-              gold={this.state.lootObj.gold}
-            />
-    }
+    // let loot
+    // if (this.state.lootObj) {
+    //   loot = <Loot
+    //           inventory={this.state.lootObj.inventory}
+    //           gold={this.state.lootObj.gold}
+    //         />
+    // }
 
     let addUserButtonClass, addUserButtonText, userSearch
     if (this.state.addUsersShow) {

@@ -84,7 +84,7 @@ class UserSearch extends React.Component {
         return(
           <UserTile
             key={u.user_id}
-            email={u.user_email}
+            username={u.user_username}
             id={u.user_id}
             buttonClass={buttonClass}
             nameValue={this.state.charName}
@@ -100,7 +100,7 @@ class UserSearch extends React.Component {
       <div className="row">
         <div className="col s12 m6">
           <form onSubmit={this.handleSearch}>
-            <input id="query" value={this.state.query} placeholder="Search for a user by email address" onChange={this.handleInput}/>
+            <input id="query" value={this.state.query} placeholder="Search for a user by username" onChange={this.handleInput}/>
           </form>
         </div>
         <div className="col s12 m6">
