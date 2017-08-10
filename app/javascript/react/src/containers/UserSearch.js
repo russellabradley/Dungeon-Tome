@@ -11,7 +11,8 @@ class UserSearch extends React.Component {
       returnedSearchUsersArray: [],
       charName: "",
       charClass: "",
-      userId: ""
+      userId: "",
+      searchError: ""
     }
     this.handleSearch = this.handleSearch.bind(this)
     this.handleInput = this.handleInput.bind(this)
@@ -42,6 +43,9 @@ class UserSearch extends React.Component {
       // Adds returned user id to the returnedSearchUsersArray array in state
       if (response.user) {
         this.addNewUserToArray(response) // Only add to array if repsonse is a user and not a warning
+        this.setState({searchError: ""})
+      } else if (response.status) {
+        this.setState({searchError: response.status})
       }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
@@ -98,6 +102,9 @@ class UserSearch extends React.Component {
           />
         )
       })
+    } else {
+      results =
+        <p className="red-text">{this.state.searchError}</p>
     }
 
     return(
