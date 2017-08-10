@@ -119,11 +119,13 @@ class CampaignShow extends React.Component {
         <p onClick={() => this.setState({showDescription: true})}>Show description...</p>
     }
 
+
     let characterTags = this.state.charactersArray.map (c => {
       return(
         <div className="chip">{c.char_name}, {c.char_class}</div>
       )
     })
+
 
     let sessions
     if (this.state.sessionsArray) {
