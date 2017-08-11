@@ -65,6 +65,13 @@ class UserSearch extends React.Component {
     }
     // Sends form data up to create character in CampaignShow
     this.props.createCharacter(characterFormPayload)
+    // Clears the entries
+    this.setState({
+      charName: "",
+      charClass: "",
+      query: "",
+      returnedSearchUsersArray: []
+    })
   }
 
 
