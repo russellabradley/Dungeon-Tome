@@ -112,18 +112,20 @@ class CampaignShow extends React.Component {
     }
 
 
-    let chipContent, chipClass
+    let chipContent, chipClass, chipMeTag
     let characterTags = this.state.charactersArray.map (c => {
       debugger;
       if (c.user_id === this.state.currentUser) {
         chipClass = "chip yellow lighten-3"
+        chipMeTag = "(Me)"
       } else {
         chipClass = "chip"
+        chipMeTag = ""
       }
       if (c.char_class === "") {
-        chipContent = c.char_name
+        chipContent = `${chipMeTag} ${c.char_name}`
       } else {
-        chipContent = `${c.char_name}, ${c.char_class}`
+        chipContent = `${chipMeTag} ${c.char_name}, ${c.char_class}`
       }
       return(
         <div className={chipClass}>{chipContent}</div>
@@ -193,7 +195,7 @@ class CampaignShow extends React.Component {
           </div>
           <div className="campaignHeader-bottom-bar">
             <div className="container">
-              <h5 className="header-cinzel-font center">Characters</h5>
+              <h5 className="header-cinzel-font center">- Players -</h5>
               <div className="center">
                 {characterTags}
                 <button onClick={this.toggleAddUserShow} className={addUserButtonClass}>{addUserButtonText}</button>
