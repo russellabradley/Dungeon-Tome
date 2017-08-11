@@ -12,7 +12,7 @@ const CampaignTile = props => {
       <div className="card-image">
         <img src={campaignTileImage}/>
         <span className="card-title">
-          <h3 className="header-cinzel-font">{props.title}</h3>
+          <h3 className="header-cinzel-font -outline">{props.title}</h3>
         </span>
       </div>
       <div className="card-content">

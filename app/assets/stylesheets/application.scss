@@ -53,8 +53,24 @@
   padding: 50px;
 }
 
+html {
+  font-family: 'Open Sans', GillSans, Calibri, sans-serif;
+}
+
  .header-cinzel-font {
    font-family: 'Cinzel', cursive;
+ }
+
+ .header-cinzel-font.-bold {
+   font-weight: 700;
+ }
+
+ .header-cinzel-font.-outline {
+   text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
  }
 
  .campaignHeader-bottom-bar {
