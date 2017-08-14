@@ -22,7 +22,7 @@ class UserSearch extends React.Component {
 
   handleSearch(event) {
     event.preventDefault()
-    let query = '?email=' + encodeURIComponent(this.state.query) + '&campaignId=' + encodeURIComponent(this.props.campaignId);
+    let query = '?email=' + encodeURIComponent(this.state.query.toLowerCase()) + '&campaignId=' + encodeURIComponent(this.props.campaignId);
     fetch('/api/v1/users/search' + query, {
       headers: {
         'Content-Type': 'application/json',
