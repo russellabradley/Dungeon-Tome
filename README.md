@@ -1,24 +1,53 @@
-# README
+# Dungeon Tome
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a companion web app to used alongside tabletop roleplaying games (like Dungeons & Dragons). Users can join with the other members of their gaming groups and track their campaigns, quests and characters.
 
-Things you may want to cover:
+Dungeon Tome has a Ruby on Rails backend with a PostgreSQL database.
 
-* Ruby version
+The front end is React running with webpacker and React Router v4.
 
-* System dependencies
+![DungeonTome](campaign_image.png)
 
-* Configuration
+## Ruby version
+2.3.4
 
-* Database creation
+## Live Demo
+[Dungeon Tome](https://www.dunegon-tome.herokuapp.com/)
 
-* Database initialization
+## ER Diagram
 
-* How to run the test suite
+![ER](er_diagram.png)
 
-* Services (job queues, cache servers, search engines, etc.)
+## Get Started
 
-* Deployment instructions
+```bash
+$ cd dungeon-tome
+$ bundle            # install dependencies
+$ rake db:create    # initialize the database
+$ rake db:migrate   # run migrations
+$ rake              # run the test suite
+```
 
-* ...
+## Usage
+
+In one terminal window:
+
+```bash
+$ rake db:seed      # (optional) seed the database with example data
+$ rails s           # start the rails server
+```
+
+In a separate terminal window:
+
+```bash
+$ ./bin/webpack-dev-server    # start webpack server
+```
+
+Visit https://localhost:3000/ in your web browser.
+
+## TODO
+
+* Make sessions editable and deletable by anyone in a campaign
+* Add additional information for characters
+* Add a loot tracking system for campaigns
+* Add Dungeon Master functionality (admin for a campaign)
