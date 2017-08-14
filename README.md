@@ -1,18 +1,22 @@
 # Dungeon Tome
 
-This is a companion web app to used alongside tabletop roleplaying games (like Dungeons & Dragons). Users can join with the other members of their gaming groups and track their campaigns, quests and characters.
-
-Dungeon Tome has a Ruby on Rails backend with a PostgreSQL database.
-
-The front end is React running with webpacker and React Router v4.
+Dungeon Tome is a companion web app to used alongside tabletop roleplaying games (like Dungeons & Dragons). Users can join with the other members of their gaming groups and track their campaigns, quests and characters.
 
 ![DungeonTome](campaign_image.png)
 
-## Ruby version
+## Technologies
+
+Dungeon Tome has a Ruby on Rails backend with a PostgreSQL database.
+
+The front end is React.js running with webpacker and React Router v4.
+
+## Ruby Version
+
 2.3.4
 
 ## Live Demo
-[Dungeon Tome](https://www.dunegon-tome.herokuapp.com/)
+
+[Dungeon Tome](https://dungeon-tome.herokuapp.com/)
 
 ## ER Diagram
 
@@ -20,12 +24,14 @@ The front end is React running with webpacker and React Router v4.
 
 ## Get Started
 
+Clone the master branch to a new directory.
+
 ```bash
 $ cd dungeon-tome
-$ bundle            # install dependencies
-$ rake db:create    # initialize the database
-$ rake db:migrate   # run migrations
-$ rake              # run the test suite
+$ bundle              # install dependencies
+$ rake db:create      # initialize the database
+$ rake db:migrate     # run migrations
+$ rake                # run the test suite
 ```
 
 ## Usage
@@ -40,14 +46,15 @@ $ rails s           # start the rails server
 In a separate terminal window:
 
 ```bash
-$ ./bin/webpack-dev-server    # start webpack server
+$ ./bin/webpack-dev-server    # starts webpack
 ```
 
-Visit https://localhost:3000/ in your web browser.
+Visit http://localhost:3000/ in your web browser.
 
 ## TODO
 
-* Make sessions editable and deletable by anyone in a campaign
+* Improve mobile-friendly features
+* Make sessions editable and deletable by all members of a campaign
 * Add additional information for characters
-* Add a loot tracking system for campaigns
-* Add Dungeon Master functionality (admin for a campaign)
+* Add a loot tracking system to campaigns
+* Add "Dungeon Master" admin functionality to campaigns
