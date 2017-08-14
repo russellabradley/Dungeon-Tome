@@ -55,6 +55,18 @@ USERS = [
   {
     email: "jake",
     password: "password",
+  },
+  {
+    email: "demo1",
+    password: "password",
+  },
+  {
+    email: "demo2",
+    password: "password",
+  },
+  {
+    email: "demo3",
+    password: "password",
   }
 ]
 
