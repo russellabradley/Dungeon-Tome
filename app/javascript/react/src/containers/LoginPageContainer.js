@@ -44,7 +44,7 @@ class Login extends React.Component {
       fetch('/user_token', {
         headers: {'Content-Type': 'application/json'},
         method: 'POST',
-        body: JSON.stringify({"auth": {"email": this.state.username, "password": this.state.password}})
+        body: JSON.stringify({"auth": {"email": this.state.username.toLowerCase(), "password": this.state.password}})
       })
       .then(response => {
         if (response.ok) {
@@ -80,7 +80,7 @@ class Login extends React.Component {
     if (this.submissionIsValid(this.state.signupUsername, this.state.signupPassword)) {
       fetch('/api/v1/users', {
         method: 'POST',
-        body: JSON.stringify({email: this.state.signupUsername, password: this.state.signupPassword})
+        body: JSON.stringify({email: this.state.signupUsername.toLowerCase(), password: this.state.signupPassword})
       }).then(response => {
         if (response.ok) {
           return response;
