@@ -18,7 +18,7 @@ The front end is React.js running with webpacker and React Router v4.
 
 [Dungeon Tome](https://dungeon-tome.herokuapp.com/)
 
-You may use these dummy accounts to test the Add Player functionality:
+You may use these dummy usernames to test the Add Player functionality on the campaign page:
 * demo1
 * demo2
 * demo3
