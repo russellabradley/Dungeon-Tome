@@ -10,6 +10,8 @@ Dungeon Tome has a Ruby on Rails backend with a PostgreSQL database.
 
 The front end is React.js running with webpacker and React Router v4.
 
+User authentication is handled with [Knock](https://github.com/nsarno/knock) and BCrypt.
+
 ## Ruby Version
 
 2.3.4
@@ -60,6 +62,6 @@ Visit http://localhost:3000/ in your web browser.
 
 * Improve mobile-friendly features
 * Make sessions editable and deletable by all members of a campaign
-* Add additional information for characters
+* Add additional information for players and characters
 * Add a loot tracking system to campaigns
 * Add "Dungeon Master" admin functionality to campaigns
