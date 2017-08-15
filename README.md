@@ -1,6 +1,6 @@
 # Dungeon Tome
 
-Dungeon Tome is a companion web app to used alongside tabletop roleplaying games (like Dungeons & Dragons). Users can join with the other members of their gaming groups and track their campaigns, quests and characters.
+Dungeon Tome is a companion web app to used alongside tabletop roleplaying games (like Dungeons & Dragons). Users can join with the other members of their gaming groups and track their campaigns, game sessions and characters.
 
 ![DungeonTome](campaign_image.png)
 
